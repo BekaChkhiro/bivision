@@ -89,7 +89,9 @@ const Save = ({ attributes }) => {
             @media (max-width: 768px) {
                 .header-container {
                     flex-direction: column !important;
-                    padding: 15px 20px !important;
+                    padding: 0 20px !important;
+                    height: 50px !important;
+                    min-height: 50px !important;
                 }
                 .main-navigation {
                     display: none !important;
@@ -115,7 +117,8 @@ const Save = ({ attributes }) => {
                 width: 100% !important;
                 justify-content: space-between !important;
                 align-items: center !important;
-                min-height: 60px !important;
+                height: 50px !important;
+                min-height: 50px !important;
             }
             /* Mobile menu styles */
             .mobile-menu-close:hover {
