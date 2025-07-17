@@ -1,0 +1,111 @@
+.bevision-blog-quote-block {
+  background: #fff;
+  border: 2px solid #6E56CF;
+  border-radius: 16px;
+  margin: 60px auto 0 auto;
+  padding: 50px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1250px;
+}
+
+.bevision-blog-quote-block blockquote,
+.bevision-blog-quote-block .quote-text {
+  font-size: 20px;
+  color: #2D2A5F;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+  margin: 0 auto 32px auto;
+  letter-spacing: -0.01em;
+  width: 100%;
+  max-width: 90%;
+  display: block;
+}
+
+.bevision-blog-quote-block .author-container {
+     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.bevision-blog-quote-block .author-image-container {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bevision-blog-quote-block img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.bevision-blog-quote-block .author-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: center;
+}
+
+.bevision-blog-quote-block .author-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 2px;
+  color: #2D2A5F;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.bevision-blog-quote-block .author-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  color: #8399AF;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .bevision-blog-quote-block {
+    display: none; /* Hide on mobile devices */
+  }
+  
+  /* Keeping these styles for admin editor on mobile */
+  .editor-styles-wrapper .bevision-blog-quote-block {
+    display: flex; /* Keep visible in editor */
+    padding: 32px 12px;
+    margin: 30px auto;
+  }
+  
+  .editor-styles-wrapper .bevision-blog-quote-block blockquote,
+  .editor-styles-wrapper .bevision-blog-quote-block .quote-text {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+  
+  .editor-styles-wrapper .bevision-blog-quote-block .author-name {
+    font-size: 16px;
+  }
+  
+  .bevision-blog-quote-block .author-title {
+    font-size: 12px;
+  }
+}

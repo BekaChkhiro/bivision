@@ -1,0 +1,200 @@
+.dashboard-features {
+    padding: 0;
+    overflow-x: hidden;
+    margin-bottom: 60px;
+
+}
+
+.dashboard-features .container {
+    max-width: 1250px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    overflow: hidden;
+     
+}
+
+
+.dashboard-features__content {
+    flex: 0 0 50%; 
+  
+}
+
+.dashboard-features__title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 15px;
+}
+
+.dashboard-features__icon {
+    display: flex;
+    align-items: start;
+        gap: 15px;
+        margin-bottom: 20px;
+    
+}
+
+.dashboard-features__icon img {
+    height: 40px;
+    width: auto;
+    margin-top: 5px;
+}
+
+.dashboard-features__title {
+    color: var(--Dark-Blue, #221A4C);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    margin-top: 2px;
+}
+
+.dashboard-features__description {
+    color: var(--Grey, #8399AF);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+.dashboard-features__list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-features__list-item {
+    color: var(--Grey, #8399AF);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.dashboard-features__list-item::marker {
+    color: var(--Dark-Blue, #221A4C);
+}
+
+.dashboard-features__list-item .list-item-title {
+    font-weight: 600;
+    color: var(--Dark-Blue, #221A4C);
+    margin-bottom: 4px;
+    line-height: normal;
+}
+
+.dashboard-features__list-item .list-item-description {
+    font-size: 16px;
+    color: var(--Grey, #8399AF);
+    line-height: 1.5;
+    margin-left: 15px;
+}
+
+.dashboard-features__35age {
+    flex: 0 0 35%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-features__image img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-features {
+        padding: 60px 20px;
+        overflow-x: hidden;
+        width: 90%;
+        margin-bottom: 0px;
+    }
+    
+    .dashboard-features .container {
+        /* Remove flex-direction on mobile */
+        gap: 60px;
+        max-width: 100%;
+        overflow: hidden;
+        padding: 0px;
+        display: block; /* Change from flex to block for mobile */
+    }
+    
+  
+    .dashboard-features__content,
+    .dashboard-features__image {
+        width: 100%;
+        flex: none;
+        max-width: 100%;
+
+    }
+    
+    .dashboard-features__title-container {
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .dashboard-features__icon {
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+    
+    .dashboard-features__icon img {
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+    
+    .dashboard-features__title {
+        font-size: 22px;
+        margin: 0;
+        word-wrap: break-word;
+        margin-bottom: 19px;
+    }
+    
+    .dashboard-features__description {
+        font-size: 16px;
+        margin-bottom: 40px;
+        word-wrap: break-word;
+        margin-right: 40px
+    }
+    
+    .dashboard-features__list-item {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+    
+    .dashboard-features__list-item .list-item-title {
+        font-size: 16px;
+    }
+    
+    .dashboard-features__list-item .list-item-description {
+        font-size: 14px;
+    }
+    
+    .dashboard-features__image {
+        display: block !important; /* Force visibility, override any display: none */
+        min-height: auto;
+        margin-top: 2rem;
+        width: 100%;
+        max-width: 100%;
+        clear: both; /* Ensure it appears after content */
+    }
+    
+    .dashboard-features__image img {
+        display: block !important; /* Force image visibility */
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+}

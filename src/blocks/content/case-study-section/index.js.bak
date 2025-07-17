@@ -1,0 +1,495 @@
+import { registerBlockType } from '@wordpress/blocks';
+import { useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { PanelBody, ColorPalette, TabPanel, TextControl, RangeControl, Button } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import './frontend.css';
+
+registerBlockType('bevision/case-study-section', {
+    title: 'Case Study Section',
+    icon: 'analytics',
+    category: 'design',
+    attributes: {
+        title: {
+            type: 'string',
+            source: 'html',
+            selector: 'h1',
+            default: 'Title text for the case study'
+        },
+        description: {
+            type: 'string',
+            source: 'html',
+            selector: '.description',
+            default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        },
+        backgroundColor: {
+            type: 'string',
+            default: '#F7F5FF'
+        },
+        titleColor: {
+            type: 'string',
+            default: '#2D2A5F'
+        },
+        descriptionColor: {
+            type: 'string',
+            default: '#8399AF'
+        },
+        titleFontSize: {
+            type: 'number',
+            default: 48
+        },
+        descriptionFontSize: {
+            type: 'number',
+            default: 16
+        },
+        backgroundImage: {
+            type: 'object',
+            default: {
+                url: '',
+                alt: '',
+                id: null
+            }
+        },
+        mobileButtonText: {
+            type: 'string',
+            default: 'Request a demo'
+        },
+        mobileButtonUrl: {
+            type: 'string',
+            default: '#'
+        },
+        },
+        rightImage: {
+            type: 'object',
+            default: {
+                url: '',
+                alt: '',
+                id: null
+            }
+        },
+        buttonText: {
+            type: 'string',
+            source: 'html',
+            selector: '.demo-button',
+            default: 'Request a demo'
+        },
+        buttonUrl: {
+            type: 'string',
+            default: '#'
+        },
+        buttonColor: {
+            type: 'string',
+            default: '#6D5FEB'
+        },
+        buttonTextColor: {
+            type: 'string',
+            default: '#FFFFFF'
+        }
+    },
+
+    edit: function(props) {
+        const { attributes, setAttributes } = props;
+        const blockProps = useBlockProps();
+        const { 
+            title, description, buttonText, buttonUrl,
+            backgroundColor, titleColor, descriptionColor, buttonColor, buttonTextColor,
+            titleFontSize, descriptionFontSize,
+            backgroundImage, rightImage
+        } = attributes;
+
+        // Media upload handlers
+        const onSelectBackgroundImage = (media) => {
+            setAttributes({
+                backgroundImage: {
+                    url: media.url,
+                    alt: media.alt || '',
+                    id: media.id
+                }
+            });
+        };
+
+        const onSelectRightImage = (media) => {
+            setAttributes({
+                rightImage: {
+                    url: media.url,
+                    alt: media.alt || '',
+                    id: media.id
+                }
+            });
+        };
+
+        const removeBackgroundImage = () => {
+            setAttributes({
+                backgroundImage: {
+                    url: '',
+                    alt: '',
+                    id: null
+                }
+            });
+        };
+
+        const removeRightImage = () => {
+            setAttributes({
+                rightImage: {
+                    url: '',
+                    alt: '',
+                    id: null
+                }
+            });
+        };
+
+        return (
+            <div {...blockProps}>
+                <InspectorControls>
+                    <TabPanel
+                        className="bevision-tab-panel"
+                        activeClass="is-active"
+                        tabs={[
+                            {
+                                name: 'content',
+                                title: 'კონტენტი',
+                                className: 'tab-content'
+                            },
+                            {
+                                name: 'style',
+                                title: 'სტილი',
+                                className: 'tab-style'
+                            }
+                        ]}
+                    >
+                        {(tab) => {
+                            if (tab.name === 'content') {
+                                return (
+                                    <PanelBody>
+                                        <TextControl
+                                            label="სათაური"
+                                            value={title}
+                                            onChange={(value) => setAttributes({ title: value })}
+                                        />
+                                        <TextControl
+                                            label="აღწერა"
+                                            value={description}
+                                            onChange={(value) => setAttributes({ description: value })}
+                                        />
+                                        <TextControl
+                                            label="ღილაკის ტექსტი"
+                                            value={buttonText}
+                                            onChange={(value) => setAttributes({ buttonText: value })}
+                                        />
+                                        <TextControl
+                                            label="ღილაკის URL"
+                                            value={buttonUrl}
+                                            onChange={(value) => setAttributes({ buttonUrl: value })}
+                                        />
+                                        <div style={{ marginTop: '20px' }}>
+                                            <p>ფონის სურათი</p>
+                                            <MediaUploadCheck>
+                                                <MediaUpload
+                                                    onSelect={onSelectBackgroundImage}
+                                                    allowedTypes={['image']}
+                                                    value={backgroundImage?.id}
+                                                    render={({ open }) => (
+                                                        <div>
+                                                            {backgroundImage?.url ? (
+                                                                <div>
+                                                                    <img 
+                                                                        src={backgroundImage.url} 
+                                                                        alt={backgroundImage.alt || ''}
+                                                                        style={{ maxWidth: '100%', height: 'auto', marginBottom: '8px' }}
+                                                                    />
+                                                                    <Button 
+                                                                        onClick={removeBackgroundImage} 
+                                                                        isDestructive
+                                                                    >
+                                                                        წაშლა
+                                                                    </Button>
+                                                                </div>
+                                                            ) : (
+                                                                <Button 
+                                                                    onClick={open}
+                                                                    variant="secondary"
+                                                                >
+                                                                    ფონის სურათის არჩევა
+                                                                </Button>
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                />
+                                            </MediaUploadCheck>
+                                        </div>
+                                        <div style={{ marginTop: '20px' }}>
+                                            <p>მობილური ღილაკი (მხოლოდ მობილურზე გამოჩნდება)</p>
+                                            <TextControl
+                                                label="მობილური ღილაკის ტექსტი"
+                                                value={attributes.mobileButtonText}
+                                                onChange={(value) => setAttributes({ mobileButtonText: value })}
+                                            />
+                                            <TextControl
+                                                label="მობილური ღილაკის URL"
+                                                value={attributes.mobileButtonUrl}
+                                                onChange={(value) => setAttributes({ mobileButtonUrl: value })}
+                                            />
+                                        </div>
+                                        <div style={{ marginTop: '20px' }}>
+                                            <p>მარჯვენა სურათი</p>
+                                            <MediaUploadCheck>
+                                                <MediaUpload
+                                                    onSelect={onSelectRightImage}
+                                                    allowedTypes={['image']}
+                                                    value={rightImage?.id}
+                                                    render={({ open }) => (
+                                                        <div>
+                                                            {rightImage?.url ? (
+                                                                <div>
+                                                                    <img 
+                                                                        src={rightImage.url} 
+                                                                        alt={rightImage.alt || ''}
+                                                                        style={{ maxWidth: '100%', height: 'auto', marginBottom: '8px' }}
+                                                                    />
+                                                                    <Button 
+                                                                        onClick={removeRightImage} 
+                                                                        isDestructive
+                                                                    >
+                                                                        წაშლა
+                                                                    </Button>
+                                                                </div>
+                                                            ) : (
+                                                                <Button 
+                                                                    onClick={open}
+                                                                    variant="secondary"
+                                                                >
+                                                                    სურათის არჩევა
+                                                                </Button>
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                />
+                                            </MediaUploadCheck>
+                                        </div>
+                                    </PanelBody>
+                                );
+                            } else if (tab.name === 'style') {
+                                return (
+                                    <PanelBody>
+                                        <p>ფონის ფერი</p>
+                                        <ColorPalette
+                                            value={backgroundColor}
+                                            onChange={(value) => setAttributes({ backgroundColor: value })}
+                                        />
+                                        <p>სათაურის ფერი</p>
+                                        <ColorPalette
+                                            value={titleColor}
+                                            onChange={(value) => setAttributes({ titleColor: value })}
+                                        />
+                                        <p>აღწერის ფერი</p>
+                                        <ColorPalette
+                                            value={descriptionColor}
+                                            onChange={(value) => setAttributes({ descriptionColor: value })}
+                                        />
+                                        <p>ღილაკის ფერი</p>
+                                        <ColorPalette
+                                            value={buttonColor}
+                                            onChange={(value) => setAttributes({ buttonColor: value })}
+                                        />
+                                        <p>ღილაკის ტექსტის ფერი</p>
+                                        <ColorPalette
+                                            value={buttonTextColor}
+                                            onChange={(value) => setAttributes({ buttonTextColor: value })}
+                                        />
+                                        <RangeControl
+                                            label="სათაურის ფონტის ზომა"
+                                            value={titleFontSize}
+                                            onChange={(value) => setAttributes({ titleFontSize: value })}
+                                            min={16}
+                                            max={72}
+                                        />
+                                        <RangeControl
+                                            label="აღწერის ფონტის ზომა"
+                                            value={descriptionFontSize}
+                                            onChange={(value) => setAttributes({ descriptionFontSize: value })}
+                                            min={12}
+                                            max={36}
+                                        />
+                                    </PanelBody>
+                                );
+                            }
+                            return null;
+                        }}
+                    </TabPanel>
+                </InspectorControls>
+                
+                <div style={{
+                    backgroundColor, 
+                    backgroundImage: backgroundImage?.url ? `url(${backgroundImage.url})` : 'none', 
+                    backgroundSize: 'cover', 
+                    backgroundPosition: 'center', 
+                    position: 'relative', 
+                    overflow: 'hidden', 
+                    maxWidth: '1250px', 
+                    margin: '0 auto', 
+                    borderRadius: '20px'
+                }}>
+                    <div className="case-study-content">
+                        <div className="left-content">
+                            <RichText
+                                tagName="h1"
+                                value={title}
+                                onChange={(value) => setAttributes({ title: value })}
+                                placeholder={__('Title text for the case study', 'bevision')}
+                                style={{
+                                    color: titleColor || '#221A4C',
+                                    fontSize: `${titleFontSize}px`,
+                                }}
+                            />
+                            <RichText
+                                tagName="p"
+                                className="description"
+                                value={description}
+                                onChange={(value) => setAttributes({ description: value })}
+                                placeholder={__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 'bevision')}
+                                style={{
+                                    color: descriptionColor || '#8399AF',
+                                    fontSize: `${descriptionFontSize}px`,
+                                }}
+                            />
+                            <div className="demo-button-wrapper">
+                                <RichText
+                                    tagName="a"
+                                    className="demo-button"
+                                    value={buttonText}
+                                    onChange={(value) => setAttributes({ buttonText: value })}
+                                    style={{
+                                        backgroundColor: buttonColor || '#6D5FEB',
+                                        color: buttonTextColor || '#FFFFFF',
+                                        display: 'inline-block',
+                                        padding: '10px 40px',
+                                        borderRadius: '8px',
+                                        textDecoration: 'none',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        textAlign: 'center'
+                                    }}
+                                />
+                            </div>
+                        </div>
+                        
+                        {/* Mobile-only button preview (for editor only) */}
+                        <div className="mobile-only-button">
+                            <RichText
+                                tagName="a"
+                                className="mobile-demo-button"
+                                value={attributes.mobileButtonText}
+                                onChange={(value) => setAttributes({ mobileButtonText: value })}
+                                style={{
+                                    backgroundColor: buttonColor || '#6D5FEB',
+                                    color: buttonTextColor || '#FFFFFF',
+                                    display: 'inline-block',
+                                    padding: '10px 40px',
+                                    borderRadius: '8px',
+                                    textDecoration: 'none',
+                                    fontWeight: 'bold',
+                                    cursor: 'pointer',
+                                    textAlign: 'center'
+                                }}
+                            />
+                            <div style={{ fontSize: '12px', marginTop: '5px', color: '#999', textAlign: 'center' }}>
+                                (This button is only visible on mobile devices)
+                            </div>
+                        </div>
+                        
+                        <div className="right-content">
+                            {rightImage?.url && (
+                                <div>
+                                    <img 
+                                        src={rightImage.url} 
+                                        alt={rightImage.alt || ''} 
+                                        style={{
+                                            maxWidth: '100%',
+                                            height: 'auto'
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    },
+
+    save: function(props) {
+        const { attributes } = props;
+        const { 
+            title, description, buttonText, buttonUrl,
+            backgroundColor, titleColor, descriptionColor, buttonColor, buttonTextColor,
+            titleFontSize, descriptionFontSize,
+            backgroundImage, rightImage, mobileButtonText, mobileButtonUrl
+        } = attributes;
+        
+        const blockProps = useBlockProps.save({
+            className: 'wp-block-bevision-case-study-section',
+            style: {
+                backgroundColor,
+                backgroundImage: backgroundImage?.url ? `url(${backgroundImage.url})` : undefined,
+                backgroundSize: backgroundImage?.url ? 'cover' : undefined,
+                backgroundPosition: backgroundImage?.url ? 'center' : undefined
+            }
+        });
+        
+        return (
+            <div {...blockProps}>
+                <div className="case-study-content">
+                    <div className="left-content">
+                        <h1 
+                            style={{
+                                color: titleColor || '#221A4C',
+                                fontSize: `${titleFontSize}px`
+                            }}
+                            dangerouslySetInnerHTML={{ __html: title }}
+                        ></h1>
+                        <p 
+                            className="description" 
+                            style={{
+                                color: descriptionColor || '#8399AF',
+                                fontSize: `${descriptionFontSize}px`
+                            }}
+                            dangerouslySetInnerHTML={{ __html: description }}
+                        ></p>
+                        <div className="demo-button-wrapper">
+                            <a 
+                                href={buttonUrl}
+                                className="demo-button"
+                                style={{
+                                    backgroundColor: buttonColor || '#6D5FEB',
+                                    color: buttonTextColor || '#FFFFFF'
+                                }}
+                                dangerouslySetInnerHTML={{ __html: buttonText }}
+                            ></a>
+                        </div>
+                    </div>
+                    <div className="mobile-only-button">
+                        <a 
+                            href={mobileButtonUrl || '#'}
+                            className="mobile-demo-button"
+                            style={{
+                                backgroundColor: buttonColor || '#6D5FEB',
+                                color: buttonTextColor || '#FFFFFF'
+                            }}
+                        >
+                            {mobileButtonText || 'Request a demo'}
+                        </a>
+                    </div>
+                    <div className="right-content">
+                        {rightImage?.url && (
+                            <div>
+                                <img 
+                                    src={rightImage.url} 
+                                    alt={rightImage.alt || ''}
+                                />
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+});

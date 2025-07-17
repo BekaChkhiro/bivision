@@ -1,0 +1,152 @@
+/* Case Study Section Block - Frontend Styles */
+.wp-block-bevision-case-study-section {
+    position: relative;
+    overflow: hidden;
+    max-width: 1250px;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.wp-block-bevision-case-study-section .case-study-content {
+    margin: 0 auto;
+    padding: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 43px;
+    border-radius: 20px;
+    position: relative;
+  
+}
+
+
+.wp-block-bevision-case-study-section .left-content {
+    flex: 1;
+    max-width: 50%;
+    text-align: left;
+}
+
+
+
+
+.wp-block-bevision-case-study-section .right-content {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wp-block-bevision-case-study-section h1 {
+    color: inherit;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 750;
+    line-height: 50px;
+    margin-bottom: 40px;
+    margin-top: 0px;
+    white-space: pre-wrap;
+  
+}
+
+.wp-block-bevision-case-study-section .description {
+    color: inherit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0;
+    max-width: 100%;
+}
+
+.wp-block-bevision-case-study-section .logo-container {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.wp-block-bevision-case-study-section .case-study-logo {
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Editor-specific logo hover controls */
+.logo-container:hover .logo-controls {
+    opacity: 1 !important;
+}
+
+.wp-block-bevision-case-study-section .right-content img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .wp-block-bevision-case-study-section .case-study-content {
+        flex-direction: column !important;
+        padding: 40px 20px  !important;
+        gap: 40px !important
+    }
+    .case-study-content {
+        flex-direction: column !important;
+        padding: 40px 20px!important;
+        gap: 40px !important;
+    }
+    .wp-block-bevision-case-study-section .left-content {
+        max-width: 100%;
+        text-align: center;
+    }
+     .left-content  {
+       
+            max-width: 100% !important;
+           
+     }
+    
+     .left-content h1 {
+        font-size: 28px !important;
+        text-align: center !important;
+        line-height: 40px !important;
+        margin-bottom: 20px !important;
+     }
+
+     .right-content {
+        max-width: 80% !important;
+     }
+
+    .wp-block-bevision-case-study-section .right-content {
+        max-width: 100%;
+    }
+    
+    .wp-block-bevision-case-study-section h1 {
+        font-size: 35px;
+        line-height: 35px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .wp-block-bevision-case-study-section .description {
+        font-size: 16px !important;
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+
+    .wp-block-bevision-case-study-section .logo-container {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .wp-block-bevision-case-study-section .case-study-logo {
+        max-width: 120px;
+    }
+
+    /* Button styling for mobile */
+    .wp-block-bevision-case-study-section .demo-button {
+        display: block;
+        margin: 20px auto 0;
+        padding: 10px 40px;
+    }
+}

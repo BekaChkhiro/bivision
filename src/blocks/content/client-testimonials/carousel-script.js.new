@@ -1,0 +1,401 @@
+document.addEventListener('DOMContentLoaded', function() {
+    /**
+     * Enhanced mobile carousel for client testimonials
+     * Fixed container overflow issues and navigation for both mobile and desktop
+     */
+    
+    // Configuration
+    const MOBILE_BREAKPOINT = 767;
+    const ACTIVE_DOT_COLOR = '#6653C6';
+    const INACTIVE_DOT_COLOR = '#E0E0E0';
+    
+    // Mobile detection - reliable check based on viewport width
+    function isMobile() {
+        return window.innerWidth <= MOBILE_BREAKPOINT;
+    }
+    
+    // Setup mobile dots if they don't exist yet
+    function setupMobileDots() {
+        const testimonialBlocks = document.querySelectorAll('.wp-block-bevision-client-testimonials');
+        
+        testimonialBlocks.forEach(block => {
+            // Clean up any existing mobile dots first to prevent duplicates
+            const existingMobileDots = block.querySelector('.mobile-carousel-dots');
+            if (existingMobileDots) {
+                existingMobileDots.remove();
+            }
+            
+            // Create dots container
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'mobile-carousel-dots';
+            
+            // Get all cards
+            const grid = block.querySelector('.carousel-inner');
+            if (!grid) return;
+            
+            const cards = grid.querySelectorAll('.testimonial-card');
+            if (!cards.length) return;
+            
+            // Create a dot for each card
+            cards.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                dot.style.width = '10px';
+                dot.style.height = '10px';
+                dot.style.borderRadius = '50%';
+                dot.style.border = 'none';
+                dot.style.padding = '0';
+                dot.style.margin = '0 5px';
+                dot.style.cursor = 'pointer';
+                dot.style.backgroundColor = index === 0 ? ACTIVE_DOT_COLOR : INACTIVE_DOT_COLOR;
+                dot.setAttribute('data-index', index);
+                
+                dotsContainer.appendChild(dot);
+            });
+            
+            // Add dots after the grid
+            dotsContainer.style.display = 'flex';
+            dotsContainer.style.justifyContent = 'center';
+            dotsContainer.style.marginTop = '20px';
+            block.appendChild(dotsContainer);
+        });
+    }
+    
+    // Initialize desktop dots (non-mobile)
+    function setupDesktopDots() {
+        const testimonialBlocks = document.querySelectorAll('.wp-block-bevision-client-testimonials');
+        
+        testimonialBlocks.forEach(block => {
+            const dotsContainer = block.querySelector('.carousel-dots');
+            if (!dotsContainer) return;
+            
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            if (!dots.length) return;
+            
+            // Reset all active states first
+            dots.forEach(dot => dot.classList.remove('active'));
+            // Set initial active state
+            dots[0].classList.add('active');
+            
+            // Get all cards and the carousel container
+            const carousel = block.querySelector('.carousel-inner');
+            if (!carousel) return;
+            
+            const cards = carousel.querySelectorAll('.testimonial-card');
+            if (!cards.length) return;
+            
+            // Set initial scroll position to first card
+            // This ensures the carousel is at the beginning
+            carousel.scrollLeft = 0;
+            
+            // Add click event listeners
+            dots.forEach((dot, index) => {
+                dot.setAttribute('data-index', index);
+                dot.style.cursor = 'pointer';
+                
+                // Remove old event listeners if any
+                const newDot = dot.cloneNode(true);
+                dot.parentNode.replaceChild(newDot, dot);
+                
+                // Add new click event
+                newDot.addEventListener('click', () => {
+                    // Update active class on dots
+                    dotsContainer.querySelectorAll('.carousel-dot').forEach(d => d.classList.remove('active'));
+                    newDot.classList.add('active');
+                    
+                    // Calculate scroll position
+                    const cardWidth = cards[0].offsetWidth + 
+                                     parseInt(window.getComputedStyle(cards[0]).marginRight || 30);
+                    
+                    // Scroll to the selected card
+                    carousel.scrollTo({
+                        left: index * cardWidth,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Handle scroll events to update active dot
+            carousel.addEventListener('scroll', () => {
+                if (isMobile()) return; // Only for desktop
+                
+                // Debounce the scroll event
+                clearTimeout(carousel.scrollTimeout);
+                carousel.scrollTimeout = setTimeout(() => {
+                    const scrollPos = carousel.scrollLeft;
+                    const cardWidth = cards[0].offsetWidth + 
+                                     parseInt(window.getComputedStyle(cards[0]).marginRight || 30);
+                    const index = Math.round(scrollPos / cardWidth);
+                    
+                    if (index >= 0 && index < dots.length) {
+                        // Update active dot
+                        dots.forEach(d => d.classList.remove('active'));
+                        dots[index].classList.add('active');
+                    }
+                }, 50);
+            });
+        });
+    }
+    
+    // Initialize all testimonial blocks
+    function initTestimonialCarousels() {
+        const testimonialBlocks = document.querySelectorAll('.wp-block-bevision-client-testimonials');
+        
+        // Only setup mobile dots if we're on mobile
+        if (isMobile()) {
+            setupMobileDots();
+        }
+        
+        testimonialBlocks.forEach(block => {
+            const grid = block.querySelector('.carousel-inner');
+            if (!grid) return;
+            
+            const cards = grid.querySelectorAll('.testimonial-card');
+            if (!cards.length) return;
+            
+            // Get the appropriate dots container based on device
+            const desktopDotsContainer = block.querySelector('.carousel-dots-container .carousel-dots');
+            const mobileDotsContainer = block.querySelector('.mobile-carousel-dots');
+            const dotsContainer = isMobile() ? mobileDotsContainer : desktopDotsContainer;
+            
+            if (!dotsContainer) return;
+            
+            // Set up desktop dots to be clickable
+            if (!isMobile() && desktopDotsContainer) {
+                const desktopDots = desktopDotsContainer.querySelectorAll('.carousel-dot');
+                desktopDots.forEach((dot, index) => {
+                    dot.style.cursor = 'pointer';
+                });
+            }
+            
+            const dots = isMobile() ? 
+                dotsContainer.querySelectorAll('button') : 
+                dotsContainer.querySelectorAll('.carousel-dot');
+                
+            if (!dots.length) return;
+            
+            // Current slide tracking
+            let currentSlide = 0;
+            
+            // Ensure proper scrolling on mobile
+            if (isMobile()) {
+                // Make sure the grid is set up as a row
+                grid.style.display = 'flex';
+                grid.style.overflowX = 'auto';
+                grid.style.scrollSnapType = 'x mandatory';
+                grid.style.webkitOverflowScrolling = 'touch';
+                grid.style.scrollbarWidth = 'none';
+                grid.style.msOverflowStyle = 'none';
+                
+                // Make sure each card takes appropriate width
+                cards.forEach(card => {
+                    card.style.flex = '0 0 calc(100% - 40px)';
+                    card.style.minWidth = 'calc(100% - 40px)';
+                    card.style.maxWidth = 'calc(100% - 40px)';
+                    card.style.scrollSnapAlign = 'center';
+                    card.style.boxSizing = 'border-box';
+                    card.style.marginRight = '20px';
+                });
+            } else {
+                // Desktop setup
+                grid.style.display = 'flex';
+                grid.style.overflowX = 'auto';
+                grid.style.scrollSnapType = 'x mandatory';
+                grid.style.scrollbarWidth = 'none';
+                grid.style.msOverflowStyle = 'none';
+                
+                // Desktop card styling
+                cards.forEach(card => {
+                    card.style.flex = '0 0 calc(33.333% - 20px)';
+                    card.style.minWidth = 'calc(33.333% - 20px)';
+                    card.style.maxWidth = 'calc(33.333% - 20px)';
+                    card.style.scrollSnapAlign = 'start';
+                    card.style.marginRight = '30px';
+                });
+                
+                // Ensure the last card doesn't have right margin
+                if (cards.length > 0) {
+                    cards[cards.length - 1].style.marginRight = '0';
+                }
+            }
+            
+            // Handle dot clicks for both mobile and desktop
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    goToSlide(index, cards, dots, grid);
+                    currentSlide = index;
+                });
+            });
+            
+            // Handle scrolling
+            grid.addEventListener('scroll', function() {
+                // Debounce the scroll event
+                clearTimeout(grid.scrollTimeout);
+                grid.scrollTimeout = setTimeout(() => {
+                    const scrollPos = grid.scrollLeft;
+                    const cardWidth = cards[0].offsetWidth + 
+                                     parseInt(window.getComputedStyle(cards[0]).marginRight || (isMobile() ? 20 : 30));
+                    const index = Math.round(scrollPos / cardWidth);
+                    
+                    if (index !== currentSlide && index >= 0 && index < cards.length) {
+                        currentSlide = index;
+                        
+                        // Update appropriate dots
+                        if (isMobile()) {
+                            updateDots(dots, index);
+                        } else if (desktopDotsContainer) {
+                            // Update desktop dots
+                            const desktopDots = desktopDotsContainer.querySelectorAll('.carousel-dot');
+                            desktopDots.forEach((dot, i) => {
+                                if (i === index) {
+                                    dot.classList.add('active');
+                                } else {
+                                    dot.classList.remove('active');
+                                }
+                            });
+                        }
+                    }
+                }, 50);
+            });
+            
+            // Handle swipe on mobile
+            let touchStartX = 0;
+            
+            grid.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            grid.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                handleSwipe(touchStartX, touchEndX, currentSlide, cards, dots, grid);
+            }, { passive: true });
+        });
+    }
+    
+    // Navigate to a specific slide
+    function goToSlide(index, cards, dots, grid) {
+        if (index < 0 || index >= cards.length) return;
+        
+        // Calculate the exact position including margins
+        const cardWidth = cards[0].offsetWidth + 
+                         parseInt(window.getComputedStyle(cards[0]).marginRight || (isMobile() ? 20 : 30));
+        
+        // Use smoother scrolling
+        grid.scrollTo({
+            left: index * cardWidth,
+            behavior: 'smooth'
+        });
+        
+        // Update dots for both mobile and desktop
+        if (isMobile()) {
+            updateDots(dots, index);
+        } else {
+            const block = grid.closest('.wp-block-bevision-client-testimonials');
+            if (block) {
+                const desktopDots = block.querySelectorAll('.carousel-dot');
+                desktopDots.forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+        }
+    }
+    
+    // Update the active dot
+    function updateDots(dots, activeIndex) {
+        dots.forEach((dot, index) => {
+            dot.style.backgroundColor = (index === activeIndex) ? ACTIVE_DOT_COLOR : INACTIVE_DOT_COLOR;
+        });
+    }
+    
+    // Handle swipe gesture
+    function handleSwipe(startX, endX, currentSlide, cards, dots, grid) {
+        const swipeThreshold = 50;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) < swipeThreshold) return;
+        
+        if (diff > 0 && currentSlide < cards.length - 1) {
+            // Swipe left (next)
+            goToSlide(currentSlide + 1, cards, dots, grid);
+        } else if (diff < 0 && currentSlide > 0) {
+            // Swipe right (previous)
+            goToSlide(currentSlide - 1, cards, dots, grid);
+        }
+    }
+    
+    // Function to handle resize
+    function handleResize() {
+        if (isMobile()) {
+            // Re-initialize on resize to mobile
+            initTestimonialCarousels();
+            
+            // Show mobile dots
+            document.querySelectorAll('.mobile-carousel-dots').forEach(dots => {
+                dots.style.display = 'flex';
+            });
+            
+            // Hide desktop dots
+            document.querySelectorAll('.carousel-dots-container').forEach(container => {
+                container.style.display = 'none';
+            });
+        } else {
+            // Reset and apply desktop styles
+            document.querySelectorAll('.carousel-inner').forEach(carousel => {
+                carousel.style.display = 'flex';
+                carousel.style.overflowX = 'auto';
+                carousel.style.scrollSnapType = 'x mandatory';
+                carousel.style.scrollbarWidth = 'none';
+                carousel.style.msOverflowStyle = 'none';
+                
+                const cards = carousel.querySelectorAll('.testimonial-card');
+                cards.forEach(card => {
+                    card.style.flex = '0 0 calc(33.333% - 20px)';
+                    card.style.minWidth = 'calc(33.333% - 20px)';
+                    card.style.maxWidth = 'calc(33.333% - 20px)';
+                    card.style.scrollSnapAlign = 'start';
+                    card.style.marginRight = '30px';
+                });
+                
+                // Ensure the last card doesn't have right margin
+                if (cards.length > 0) {
+                    cards[cards.length - 1].style.marginRight = '0';
+                }
+            });
+            
+            // Hide mobile dots on desktop
+            document.querySelectorAll('.mobile-carousel-dots').forEach(dots => {
+                dots.style.display = 'none';
+            });
+            
+            // Show desktop dots
+            document.querySelectorAll('.carousel-dots-container').forEach(container => {
+                container.style.display = 'flex';
+            });
+            
+            // Re-initialize desktop dots
+            setupDesktopDots();
+        }
+    }
+    
+    // Initialize on page load
+    initTestimonialCarousels();
+    
+    // Initialize desktop dots if not on mobile
+    if (!isMobile()) {
+        setupDesktopDots();
+    }
+    
+    // Handle window resize with debounce
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(handleResize, 100);
+    });
+    
+    // Initial setup based on current device
+    handleResize();
+});

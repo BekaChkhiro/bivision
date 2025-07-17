@@ -1,0 +1,367 @@
+/* Common styles for all screen sizes */
+.wp-block-bevision-client-testimonials {
+    padding: 80px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+}
+
+.wp-block-bevision-client-testimonials .carousel {
+    max-width: 80% !important; /* Desktop: 80% width */
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+}
+
+.wp-block-bevision-client-testimonials .carousel-inner {
+    display: flex !important; /* Change from grid to flex for consistent layout */
+    flex-wrap: nowrap !important;
+    gap: 15px !important; /* Reduced gap for better fitting */
+    width: 100% !important;
+    overflow-x: auto !important; /* Allow horizontal scrolling even on desktop */
+    scroll-snap-type: x mandatory !important;
+    padding: 20px 0 !important;
+    margin: 0 auto !important; /* Center the carousel */
+    scrollbar-width: none !important; /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none !important; /* Hide scrollbar in IE/Edge */
+    scroll-behavior: smooth !important;
+    cursor: grab !important; /* Show grab cursor to indicate draggable area */
+    justify-content: center !important; /* Center the cards */
+}
+
+.wp-block-bevision-client-testimonials .carousel-inner::-webkit-scrollbar {
+    display: none !important; /* Hide scrollbar in Chrome/Safari */
+}
+
+.wp-block-bevision-client-testimonials .carousel-inner.grabbing {
+    cursor: grabbing !important;
+}
+
+.wp-block-bevision-client-testimonials .carousel-inner.active-dragging {
+    cursor: grabbing !important;
+}
+
+.wp-block-bevision-client-testimonials .testimonial-card {
+    background: #fff !important;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 0px !important; /* Changed from 20px to 0px for square shape */
+    padding: 20px !important; /* Reduced padding to maximize usable space */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important; /* Reduced gap for better content fit */
+    position: relative !important;
+    flex: 0 0 calc(30% - 10px) !important; /* Reduced width to ensure 3 cards fit properly */
+    min-width: calc(30% - 10px) !important;
+    max-width: calc(30% - 10px) !important;
+    scroll-snap-align: start !important;
+    box-sizing: border-box !important;
+    aspect-ratio: 1/1 !important; /* Make cards square */
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    margin: 0 5px !important; /* Added small margin for better spacing */
+}
+
+.wp-block-bevision-client-testimonials .carousel-dots-container {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 30px !important;
+}
+
+.wp-block-bevision-client-testimonials .carousel-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.wp-block-bevision-client-testimonials .carousel-dot {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background-color: #E0E0E0 !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    margin: 0 5px !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.wp-block-bevision-client-testimonials .carousel-dot.active {
+    background-color: #6653C6 !important;
+}
+
+/* Desktop specific carousel styling */
+@media screen and (min-width: 768px) {
+    .wp-block-bevision-client-testimonials .carousel-inner {
+        padding: 20px 0 !important;
+        margin: 0 auto !important;
+        overflow-x: visible !important; /* Allow cards to be fully visible */
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        scroll-behavior: smooth !important;
+        max-width: 1250px !important; /* Updated to match script */
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+    }
+    
+    .wp-block-bevision-client-testimonials .carousel-inner::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .wp-block-bevision-client-testimonials .testimonial-card {
+        margin-right: 20px !important;
+        flex: 0 0 calc(30% - 13px) !important; /* Reduced to 30% to ensure all 3 cards fit */
+        min-width: calc(30% - 13px) !important;
+        max-width: calc(30% - 13px) !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .wp-block-bevision-client-testimonials .testimonial-card:first-child {
+        margin-left: 20px !important;  /* Add left margin to first card */
+    }
+    
+    .wp-block-bevision-client-testimonials .testimonial-card:last-child {
+        margin-right: 0 !important;
+    }
+    
+    /* Desktop navigation styling */
+    .wp-block-bevision-client-testimonials .carousel-dots-container {
+        display: flex !important;
+        width: 100% !important;
+        justify-content: center !important;
+        margin-top: 30px !important;
+    }
+    
+    .wp-block-bevision-client-testimonials .carousel-dot {
+        width: 12px !important;
+        height: 12px !important;
+        min-width: 12px !important;
+        min-height: 12px !important;
+        border-radius: 50% !important;
+        background-color: #E0E0E0 !important;
+        cursor: pointer !important;
+        margin: 0 6px !important;
+        border: none !important;
+        padding: 0 !important;
+        transition: background-color 0.3s !important;
+    }
+    
+    .wp-block-bevision-client-testimonials .carousel-dot.active {
+        background-color: #6653C6 !important;
+    }
+}
+
+/* Mobile carousel dots container */
+.mobile-carousel-dots {
+    display: none !important;
+}
+
+@media screen and (max-width: 767px) {
+    .mobile-carousel-dots {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        margin: 20px auto !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    
+   
+    .mobile-carousel-dots button {
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 50% !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 5px !important;
+        cursor: pointer !important;
+        background-color: #E0E0E0 !important;
+    }
+}
+@media screen and (max-width: 767px) {
+    /* Container styling */
+    .wp-block-bevision-client-testimonials {
+        padding: 40px 0 !important;
+        width: 100% !important;
+        overflow: visible !important;
+        max-width: 100% !important;
+    }
+    
+    .wp-block-bevision-client-testimonials .carousel {
+        max-width: 100% !important; /* Mobile: 100% width */
+        padding: 0 !important; /* Remove padding to ensure content is fully visible */
+        margin: 0 !important; /* Remove margin to ensure content is fully visible */
+        overflow: visible !important; /* Ensure content is fully visible */
+    }
+    
+    /* Title elements for mobile */
+    .wp-block-bevision-client-testimonials > p:first-of-type {
+        font-size: 20px !important;
+        font-weight: 750 !important;
+        color: #6653C6 !important;
+    }
+
+    .wp-block-bevision-client-testimonials > h2:first-of-type {
+        font-size: 28px !important;
+        font-weight: 700 !important;
+        color: #221A4C !important;
+    }
+    
+    /* Mobile dots styling */
+    .mobile-carousel-dots {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        margin: 20px auto !important;
+        padding: 0 !important;
+    }
+    
+    /* Hide desktop dots on mobile */
+    .carousel-dots-container {
+        display: none !important;
+    }
+    
+    /* General paragraph styling as fallback */
+    .wp-block-bevision-client-testimonials p {
+        font-size: 16px !important;
+    }
+   
+    /* Force flex layout for carousel */
+    .wp-block-bevision-client-testimonials .carousel-inner {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        grid-template-columns: unset !important;
+        gap: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: visible !important;
+        scroll-behavior: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        padding: 20px 0 0 !important;
+        margin: 0 !important;
+    }
+    
+    .wp-block-bevision-client-testimonials .carousel-inner::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    /* Testimonial card styling to match the reference image */
+    .wp-block-bevision-client-testimonials .testimonial-card {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        background: #fff !important;
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05) !important;
+        border-radius: 20px !important;
+        padding: 30px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        scroll-snap-align: center !important;
+        box-sizing: border-box !important;
+    }
+    
+    .wp-block-bevision-client-testimonials .testimonial-card:last-child {
+        margin-right: 0 !important; /* Removed margin as requested */
+    }
+    
+    .wp-block-bevision-client-testimonials .testimonial-card:first-child {
+        margin-left: 0 !important; /* Ensure first card has no left margin on mobile */
+    }
+    
+    /* Company logo styling */
+    .wp-block-bevision-client-testimonials .company-logo {
+        height: 40px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Content/quote styling */
+    .wp-block-bevision-client-testimonials .content {
+        color: #221A4C !important;
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        margin: 0 !important;
+        font-weight: 400 !important;
+        margin-bottom: 40px !important;
+    }
+    
+    /* Author section styling */
+    .wp-block-bevision-client-testimonials .author {
+        display: flex !important;
+        align-items: center !important;
+        gap: 15px !important;
+    }
+    
+    /* Author image styling */
+    .wp-block-bevision-client-testimonials .author-image {
+        width: 56px !important;
+        height: 56px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+    }
+    
+    /* Author info container */
+    .wp-block-bevision-client-testimonials .author-info {
+        margin: 0 !important;
+    }
+    
+    /* Author name styling */
+    .wp-block-bevision-client-testimonials .author-name {
+        margin: 0 !important;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        color: #221A4C !important;
+    }
+    
+    /* Author position styling */
+    .wp-block-bevision-client-testimonials .author-position {
+        margin: 0 !important;
+        font-size: 14px !important;
+        color: #6653C6 !important;
+        font-weight: 500 !important;
+    }
+}
+
+/* Ensure testimonial content styling consistency after saving */
+.wp-block-bevision-client-testimonials .content,
+.wp-block-bevision-client-testimonials .testimonial-card .content,
+.wp-block-bevision-client-testimonials .carousel-inner .content {
+    color: #221A4C !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+    margin-bottom: 40px !important;
+}
+
+/* Override any inherited text formatting */
+.wp-block-bevision-client-testimonials .content p {
+    color: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    margin: inherit !important;
+    font-weight: inherit !important;
+    margin-bottom: inherit !important;
+}
+
+/* Additional mobile responsive styles */
+@media screen and (max-width: 768px) {
+    .wp-block-bevision-client-testimonials .content {
+        color: #221A4C !important;
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        margin: 0 !important;
+        font-weight: 400 !important;
+        margin-bottom: 40px !important;
+    }
+}

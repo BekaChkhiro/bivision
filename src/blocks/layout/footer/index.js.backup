@@ -1,0 +1,418 @@
+import { useBlockProps, RichText, InspectorControls, MediaUpload } from '@wordpress/block-editor';
+import { PanelBody, ColorPalette, Button, RangeControl, TextControl, ToggleControl } from '@wordpress/components';
+import { registerCustomBlock } from '../../../utils/block-utils';
+
+const settings = {
+    title: 'Footer Section',
+    icon: 'align-wide',
+    attributes: {
+        backgroundColor: {
+            type: 'string',
+            default: '#E6E8EC'
+        },
+        textColor: {
+            type: 'string',
+            default: '#666666'
+        },
+        iconColor: {
+            type: 'string',
+            default: '#6653C6'
+        },
+        logo: {
+            type: 'string',
+            default: ''
+        },
+        logoHeight: {
+            type: 'number',
+            default: 30
+        },
+        phone: {
+            type: 'string',
+            default: '(+995) 32 2 30 60 10'
+        },
+        email: {
+            type: 'string',
+            default: 'info@bivision.ge'
+        },
+        address: {
+            type: 'string',
+            default: '40 Juli shartava street, Tbilisi, Georgia (0160)'
+        },
+        facebookUrl: {
+            type: 'string',
+            default: 'https://www.facebook.com/bivision.ge/'
+        },
+        linkedinUrl: {
+            type: 'string',
+            default: 'https://www.linkedin.com/company/bivisionge'
+        },
+        showSocialIcons: {
+            type: 'boolean',
+            default: true
+        },
+        copyright: {
+            type: 'string',
+            default: 'BIVISION 2023'
+        },
+        privacyPolicy: {
+            type: 'string',
+            default: 'Privacy policy'
+        },
+        privacyPolicyUrl: {
+            type: 'string',
+            default: '/privacy-policy'
+        }
+    },
+    edit: ({ attributes, setAttributes }) => {
+        const { backgroundColor, textColor, iconColor, logo, logoHeight, phone, email, address, facebookUrl, linkedinUrl, showSocialIcons, copyright, privacyPolicy, privacyPolicyUrl } = attributes;
+        const blockProps = useBlockProps();
+
+        return (
+            <div {...blockProps}>
+                <InspectorControls>
+                    <PanelBody title="General Settings" initialOpen={true}>
+                        <div>
+                            <p>Background Color</p>
+                            <ColorPalette
+                                value={backgroundColor}
+                                onChange={(color) => setAttributes({ backgroundColor: color })}
+                            />
+                        </div>
+                        <div>
+                            <p>Text Color</p>
+                            <ColorPalette
+                                value={textColor}
+                                onChange={(color) => setAttributes({ textColor: color })}
+                            />
+                        </div>
+                        <div>
+                            <p>Icon Color</p>
+                            <ColorPalette
+                                value={iconColor}
+                                onChange={(color) => setAttributes({ iconColor: color })}
+                            />
+                        </div>
+                        <RangeControl
+                            label="Logo Height"
+                            value={logoHeight}
+                            onChange={(value) => setAttributes({ logoHeight: value })}
+                            min={20}
+                            max={100}
+                        />
+                        <MediaUpload
+                            onSelect={(media) => setAttributes({ logo: media.url })}
+                            type="image"
+                            render={({ open }) => (
+                                <Button onClick={open} variant="secondary">
+                                    {logo ? 'Change Logo' : 'Upload Logo'}
+                                </Button>
+                            )}
+                        />
+                    </PanelBody>
+                    <PanelBody title="Contact Information" initialOpen={false}>
+                        <TextControl
+                            label="Phone Number"
+                            value={phone}
+                            onChange={(value) => setAttributes({ phone: value })}
+                        />
+                        <TextControl
+                            label="Email"
+                            value={email}
+                            onChange={(value) => setAttributes({ email: value })}
+                        />
+                        <TextControl
+                            label="Address"
+                            value={address}
+                            onChange={(value) => setAttributes({ address: value })}
+                        />
+                    </PanelBody>
+                    <PanelBody title="Social Media" initialOpen={false}>
+                        <TextControl
+                            label="Facebook URL"
+                            value={facebookUrl}
+                            onChange={(value) => setAttributes({ facebookUrl: value })}
+                        />
+                        <TextControl
+                            label="LinkedIn URL"
+                            value={linkedinUrl}
+                            onChange={(value) => setAttributes({ linkedinUrl: value })}
+                        />
+                        <ToggleControl
+                            label="Show Social Icons"
+                            checked={showSocialIcons}
+                            onChange={(value) => setAttributes({ showSocialIcons: value })}
+                        />
+                    </PanelBody>
+                    <PanelBody title="Footer Text" initialOpen={false}>
+                        <TextControl
+                            label="Copyright Text"
+                            value={copyright}
+                            onChange={(value) => setAttributes({ copyright: value })}
+                        />
+                        <TextControl
+                            label="Privacy Policy Text"
+                            value={privacyPolicy}
+                            onChange={(value) => setAttributes({ privacyPolicy: value })}
+                        />
+                        <TextControl
+                            label="Privacy Policy URL"
+                            value={privacyPolicyUrl}
+                            onChange={(value) => setAttributes({ privacyPolicyUrl: value })}
+                        />
+                    </PanelBody>
+                </InspectorControls>
+
+                <footer style={{ backgroundColor: backgroundColor, paddingTop: '0', paddingBottom: '0' }}>
+                    <div className="footer-content" style={{ 
+                        maxWidth: '1250px',
+                        margin: '120px auto 0 !important',
+                        padding: '0 20px',
+                        boxSizing: 'border-box'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            flexWrap: 'nowrap',
+                            gap: '30px'
+                        }}>
+                            {/* 1. Logo First */}
+                            <div className="footer-logo">
+                                {logo && (
+                                    <img 
+                                        src={logo} 
+                                        alt="B'VISION"
+                                        style={{ height: logoHeight + 'px', width: 'auto' }}
+                                    />
+                                )}
+                            </div>
+                            
+                            {/* 2. Phone and Email stacked vertically */}
+                            <div className="footer-contact" style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                color: textColor,
+                                gap: '8px'
+                            }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill={iconColor} style={{ minWidth: '14px' }}>
+                                        <path d="M20 10.999h2C22 5.869 18.127 2 12.99 2v2C17.052 4 20 6.943 20 10.999z"/>
+                                        <path d="M13 8c2.103 0 3 .897 3 3h2c0-3.225-1.775-5-5-5v2zm3.422 5.443a1.001 1.001 0 0 0-1.391.043l-2.393 2.461c-.576-.11-1.734-.471-2.926-1.66-1.192-1.193-1.553-2.354-1.66-2.926l2.459-2.394a1 1 0 0 0 .043-1.391L6.859 3.513a1 1 0 0 0-1.391-.087l-2.17 1.861a1 1 0 0 0-.29.649c-.015.25-.301 6.172 4.291 10.766C11.305 20.707 16.323 21 17.705 21c.202 0 .326-.006.359-.008a.992.992 0 0 0 .648-.291l1.86-2.171a1 1 0 0 0-.086-1.391l-4.064-3.696z"/>
+                                    </svg>
+                                    <RichText
+                                        tagName="span"
+                                        value={phone}
+                                        onChange={(value) => setAttributes({ phone: value })}
+                                        style={{ color: textColor }}
+                                    />
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill={iconColor} style={{ minWidth: '14px' }}>
+                                        <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.7-8 5.334L4 8.7V6.297l8 5.333 8-5.333V8.7z"/>
+                                    </svg>
+                                    <RichText
+                                        tagName="span"
+                                        value={email}
+                                        onChange={(value) => setAttributes({ email: value })}
+                                        style={{ color: textColor }}
+                                    />
+                                </div>
+                            </div>
+                            
+                            {/* 3. Address with its icon */}
+                            <div className="footer-address" style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                color: textColor,
+                                gap: '8px'
+                            }}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill={iconColor} style={{ minWidth: '14px' }}>
+                                    <path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                                </svg>
+                                <RichText
+                                    tagName="span"
+                                    value={address}
+                                    onChange={(value) => setAttributes({ address: value })}
+                                    style={{ color: textColor }}
+                                />
+                            </div>
+                            
+                            {/* 4. Social media icons */}
+                            {showSocialIcons && (
+                                <div className="footer-social" style={{ display: 'flex', gap: '12px' }}>
+                                    {facebookUrl && (
+                                        <a href={facebookUrl} target="_blank" rel="noopener noreferrer" style={{ 
+                                            width: '24px',
+                                            height: '24px',
+                                            opacity: 1,
+                                            transition: 'opacity 0.3s'
+                                        }}>
+                                            <svg viewBox="0 0 24 24" fill={iconColor}>
+                                                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+                                            </svg>
+                                        </a>
+                                    )}
+                                    {linkedinUrl && (
+                                        <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" style={{ 
+                                            width: '24px',
+                                            height: '24px',
+                                            opacity: 1,
+                                            transition: 'opacity 0.3s'
+                                        }}>
+                                            <svg viewBox="0 0 24 24" fill={iconColor}>
+                                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.68 1.68 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                            </svg>
+                                        </a>
+                                    )}
+                                </div>
+                            )}
+                            
+                            {/* 5. Copyright information */}
+                            <div style={{ color: textColor, fontSize: '14px', display: 'flex', alignItems: 'center', gap: '20px' }}>
+                                <div>
+                                    &copy; <RichText
+                                        tagName="span"
+                                        value={copyright}
+                                        onChange={(value) => setAttributes({ copyright: value })}
+                                        style={{ color: textColor }}
+                                    />
+                                </div>
+                                <RichText
+                                    tagName="span"
+                                    value={privacyPolicy}
+                                    onChange={(value) => setAttributes({ privacyPolicy: value })}
+                                    style={{ color: textColor }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        );
+    },
+    save: ({ attributes }) => {
+        const { backgroundColor, textColor, iconColor, logo, logoHeight, phone, email, address, facebookUrl, linkedinUrl, showSocialIcons, copyright, privacyPolicy, privacyPolicyUrl } = attributes;
+        const blockProps = useBlockProps.save();
+
+        return (
+            <div {...blockProps}>
+                <footer style={{ backgroundColor: backgroundColor, paddingTop: '0', paddingBottom: '0' }}>
+                    <div className="footer-content" style={{ 
+                        maxWidth: '1250px',
+                        margin: '120px auto 0 !important',
+                        padding: '70px 0px',
+                        boxSizing: 'border-box'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            flexWrap: 'nowrap',
+                            gap: '30px'
+                        }}>
+                            {/* 1. Logo First */}
+                            <div className="footer-logo">
+                                {logo && (
+                                    <img 
+                                        src={logo} 
+                                        alt="B'VISION"
+                                        style={{ height: logoHeight + 'px', width: 'auto' }}
+                                    />
+                                )}
+                            </div>
+                            
+                            {/* 2. Phone and Email stacked vertically */}
+                            <div className="footer-contact" style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                color: textColor,
+                                gap: '8px'
+                            }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill={iconColor} style={{ minWidth: '14px' }}>
+                                        <path d="M20 10.999h2C22 5.869 18.127 2 12.99 2v2C17.052 4 20 6.943 20 10.999z"/>
+                                        <path d="M13 8c2.103 0 3 .897 3 3h2c0-3.225-1.775-5-5-5v2zm3.422 5.443a1.001 1.001 0 0 0-1.391.043l-2.393 2.461c-.576-.11-1.734-.471-2.926-1.66-1.192-1.193-1.553-2.354-1.66-2.926l2.459-2.394a1 1 0 0 0 .043-1.391L6.859 3.513a1 1 0 0 0-1.391-.087l-2.17 1.861a1 1 0 0 0-.29.649c-.015.25-.301 6.172 4.291 10.766C11.305 20.707 16.323 21 17.705 21c.202 0 .326-.006.359-.008a.992.992 0 0 0 .648-.291l1.86-2.171a1 1 0 0 0-.086-1.391l-4.064-3.696z"/>
+                                    </svg>
+                                    <a href={`tel:${phone}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <RichText.Content value={phone} />
+                                    </a>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill={iconColor} style={{ minWidth: '14px' }}>
+                                        <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.7-8 5.334L4 8.7V6.297l8 5.333 8-5.333V8.7z"/>
+                                    </svg>
+                                    <a href={`mailto:${email}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <RichText.Content value={email} />
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            {/* 3. Address with its icon */}
+                            <div className="footer-address" style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                color: textColor,
+                                gap: '8px'
+                            }}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill={iconColor} style={{ minWidth: '14px' }}>
+                                    <path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                                </svg>
+                                <a href="https://www.google.com/maps/search/?api=1&query=40+Juli+shartava+street+Tbilisi+Georgia" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <RichText.Content value={address} />
+                                </a>
+                            </div>
+                            
+                            {/* 4. Social media icons */}
+                            {showSocialIcons && (
+                                <div className="footer-social" style={{ display: 'flex', gap: '12px' }}>
+                                    {facebookUrl && (
+                                        <a href={facebookUrl} target="_blank" rel="noopener noreferrer" style={{ 
+                                            width: '24px',
+                                            height: '24px',
+                                            opacity: 1,
+                                            transition: 'opacity 0.3s'
+                                        }}>
+                                            <svg viewBox="0 0 24 24" fill={iconColor}>
+                                                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+                                            </svg>
+                                        </a>
+                                    )}
+                                    {linkedinUrl && (
+                                        <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" style={{ 
+                                            width: '24px',
+                                            height: '24px',
+                                            opacity: 1,
+                                            transition: 'opacity 0.3s'
+                                        }}>
+                                            <svg viewBox="0 0 24 24" fill={iconColor}>
+                                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.68 1.68 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                            </svg>
+                                        </a>
+                                    )}
+                                </div>
+                            )}
+                            
+                            {/* 5. Copyright information */}
+                            <div style={{ color: textColor, fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px', flexDirection: 'column' }}>
+                                <div>
+                                    © <RichText.Content value={copyright} />
+                                </div>
+                                <a href={privacyPolicyUrl} style={{ 
+                                    color: textColor,
+                                    textDecoration: 'none',
+                                    fontSize: '14px'
+                                }}>
+                                    <RichText.Content value={privacyPolicy} />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        );
+    }
+};
+
+registerCustomBlock('footer-section', settings);
