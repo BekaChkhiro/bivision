@@ -10,7 +10,7 @@ export const blockStyle = `
     .why-bivision {
         display: flex;
         flex-direction: column;
-        padding: 40px 0 50px 0;
+        padding: 70px 0 100px 0;
         background-color: #22194b;
         color: #fff;
         position: relative;

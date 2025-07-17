@@ -15,7 +15,7 @@ const blockStyle = `
     .why-bivision {
         display: flex;
         flex-direction: column;
-        padding: clamp(30px, 4vw, 40px) 0 clamp(30px, 5vw, 50px) 0;
+        padding: 0 0 100px 0;
         background-color: #22194b;
         color: #fff;
         position: relative;
@@ -51,7 +51,7 @@ const blockStyle = `
     .why-bivision .container {
         width: 100%;
         display: flex;
-        gap: clamp(15px, 2vw, 25px);
+        gap: 40px;
         position: relative;
         z-index: 1;
         align-items: stretch;
@@ -95,7 +95,7 @@ const blockStyle = `
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 25px;
+        gap: 40px;
         justify-content: space-between;
         width: 50%;
     }
@@ -113,18 +113,18 @@ const blockStyle = `
     }
 
     .why-bivision__about p {
-        font-size: 16px;
-        line-height: 1.6;
-        margin-bottom: 0;
-        color: #fff;
-        opacity: 0.9;
-        margin: 0px;
+      color: var(--White, #FFF);
+font-family: "Helvetica Neue LT GEO";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
     }
 
     .why-bivision__stats {
         display: flex;
         flex-direction: row;
-        gap: 25px;
+        gap: 40px;
         flex-wrap: nowrap;
         width: 100%;
     }
@@ -191,7 +191,7 @@ const blockStyle = `
     .why-bivision__stats .stat-item p {
         color: var(--White, #FFF);
         font-family: "Helvetica Neue LT GEO";
-        font-size: clamp(14px, 1.5vw, 18px);
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -200,7 +200,8 @@ const blockStyle = `
 
     .why-bivision__titles {
         text-align: center;
-        margin-bottom: 25px;
+        margin-bottom: 70px;
+        margin-top: 70px;
     }
 
     .why-bivision__main-title {
