@@ -19,6 +19,7 @@ const blockStyle = `
         align-items: center;
         justify-content: space-between;
         gap: 4rem;
+        margin-bottom: 70px;
     }
 
     .cross-sell-basket__header {

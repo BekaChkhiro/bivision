@@ -161,12 +161,14 @@ margin-bottom: 70px !important;
             display: flex;
             flex-direction: column;
             align-items: center;
+            
         }
         
         .product-hero-section__cta {
-            display: inline-block;
+            display: inline-flex;
             min-width: 180px;
-            text-align: center;
+        justify-content: center;
+            align-items: center;
         }
         
         .product-hero-section__image {

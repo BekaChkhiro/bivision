@@ -222,7 +222,7 @@ const blockStyle = `
         .category-analysis .container {
             flex-direction: column;
             gap: 40px;
-            padding: 0 20px;
+            padding: 0 20px !important;
             width: 100%;
             max-width: 100%;
         }
