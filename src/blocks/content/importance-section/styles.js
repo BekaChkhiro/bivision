@@ -1,6 +1,7 @@
 export const blockStyle = `
     .importance-section {
         color: #fff;
+        padding: 60px;
     }
 
     .importance-section__header {
@@ -11,9 +12,9 @@ export const blockStyle = `
     .importance-section__subtitle {
         color: var(--Malina, #2FCA02);
         text-align: center;
-        font-size: 18px;
+        font-size: 14px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 750;
         line-height: normal;
         margin-bottom: 5px;
     }
@@ -21,9 +22,9 @@ export const blockStyle = `
     .importance-section__title {
         color: var(--Dark-Blue, #221A4C);
         text-align: center;
-        font-size: 24px;
+        font-size: 30px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 700;
         line-height: normal;
         margin: 0;
     }
@@ -68,9 +69,9 @@ export const blockStyle = `
 
     .accordion-title {
         color: var(--Dark-Blue, #221A4C);
-        font-size: 20px;
+        font-size: 24px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 700;
         line-height: normal;
         transition: color 0.3s ease;
     }
@@ -195,7 +196,6 @@ export const blockStyle = `
     }
     
     .importance-section__image {
-        flex: 0 0 50%;
         min-height: 300px;
         display: flex;
         align-items: center;
@@ -228,13 +228,7 @@ export const blockStyle = `
             margin-bottom: 40px;
         }
 
-        .importance-section__title {
-            font-size: 28px;
-        }
 
-        .importance-section__subtitle {
-            font-size: 20px;
-        }
 
         .importance-section__content-wrapper {
             flex-direction: column;
@@ -247,10 +241,6 @@ export const blockStyle = `
             flex: none;
         }
 
-        .accordion-title {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
 
      
 

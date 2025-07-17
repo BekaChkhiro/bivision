@@ -157,6 +157,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 style={{
                     backgroundColor: '#f5fcf1',
                     borderRadius: '20px',
+                    padding: '60px',
                     maxWidth: '1250px',
                     ...blockProps.style
                 }}

@@ -22,6 +22,7 @@ const Save = ({ attributes }) => {
                 style={{
                     backgroundColor: '#f5fcf1',
                     borderRadius: '20px',
+                    padding: '60px',
                     maxWidth: '1250px',
                     ...blockProps.style
                 }}
