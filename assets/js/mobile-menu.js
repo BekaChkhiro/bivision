@@ -76,18 +76,16 @@ document.addEventListener("DOMContentLoaded", function() {
             logoImg.src = desktopLogo.src;
             logoImg.alt = desktopLogo.alt || 'Logo';
             // Set explicit size for mobile logo
-            logoImg.style.height = '36px'; // Slightly smaller for mobile
-            logoImg.style.width = 'auto';
+            logoImg.style.width = '106px';
+            logoImg.style.height = '18px';
             logoImg.style.objectFit = 'contain';
-            logoImg.style.maxWidth = '150px'; // Prevent logo from being too wide
         } else {
             // Fallback if desktop logo not found
             logoImg.src = '/wp-content/themes/BeVision/assets/images/logo.svg';
             logoImg.alt = 'Logo';
-            logoImg.style.height = '36px';
-            logoImg.style.width = 'auto';
+            logoImg.style.width = '106px';
+            logoImg.style.height = '18px';
             logoImg.style.objectFit = 'contain';
-            logoImg.style.maxWidth = '150px';
         }
         logoLink.appendChild(logoImg);
         logoSection.appendChild(logoLink);

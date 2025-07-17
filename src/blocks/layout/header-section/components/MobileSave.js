@@ -10,7 +10,7 @@ const MobileSave = ({ attributes }) => {
                         <img 
                             src={attributes.logo} 
                             alt="Logo" 
-                            style={{ height: '36px', width: 'auto' }}
+                            style={{ width: '106px', height: '18px' }}
                         />
                     </a>
                 </div>

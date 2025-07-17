@@ -120,6 +120,10 @@ const Save = ({ attributes }) => {
                 height: 50px !important;
                 min-height: 50px !important;
             }
+            .logo-section img {
+                width: 106px !important;
+                height: 18px !important;
+            }
             /* Mobile menu styles */
             .mobile-menu-close:hover {
                 color: #6c5ce7;

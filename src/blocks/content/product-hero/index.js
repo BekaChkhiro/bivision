@@ -7,7 +7,7 @@ const blockStyle = `
         max-width: 1250px;
         background-color: #f8f7ff;
         margin: 0 auto;
-        padding: 60px;
+        padding: 60px !important;
         display: flex;
         align-items: center;
         justify-content: space-between;!important
@@ -21,22 +21,22 @@ margin-bottom: 70px !important;
 }
 
     .product-hero-section__content {
-        flex: 0 0 50%;
+        flex: 0 0 55%;
         
     }
 
     .product-hero-section__main-title {
         color: var(--Dark-Blue, #221A4C);
-        font-size: 40px;
+        font-size: 50px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 750;
         line-height: 50px;
         margin: 0px 0px 20px;
     }
     
     .product-hero-section__title {
         color: var(--Dark-Blue, #221A4C);
-        font-size: 40px;
+        font-size: 50px;
         font-style: normal;
         font-weight: 750;
         line-height: 50px;
@@ -47,27 +47,29 @@ margin-bottom: 70px !important;
         color: var(--Grey, #8399AF);
         font-size: 18px;
         font-weight: 400;
-        line-height: 1.5;
+        line-height: normal;
         margin: 0px 0px 40px;
+        width: 450px;
     }
 
     .product-hero-section__cta {
-        display: inline-block;
-        background-color: #6C5CE7;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 600;
-        padding: 15px 40px;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        border: none;
-        cursor: pointer;
+    display: inline-flex;
+    background-color: #6C5CE7;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 40px;
+    height: 50px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
     }
 
-    .product-hero-section__cta:hover {
-        background-color: #5649c0;
-    }
+   
 
     .product-hero-section__image {
         flex: 0 0 45%;
@@ -79,7 +81,7 @@ margin-bottom: 70px !important;
     }
 
     .product-hero-section__image img {
-        max-width: 100%;
+        max-width: 98%;
         height: auto;
     }
 
