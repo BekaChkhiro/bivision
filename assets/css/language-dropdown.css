@@ -1,0 +1,162 @@
+/**
+ * Language dropdown styles
+ */
+
+/* Base styles for language selectors */
+.language-selector,
+.language-selector-mobile {
+    font-family: 'roman';
+    margin-bottom: -5px;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Current language display */
+.language-current {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 5px 10px;
+}
+
+.language-current span:not(.arrow-down) {
+    color: var(--Grey, #8399AF);
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Arrow icon - EXACT match from menu-rendering.php */
+.arrow-down {
+    content: '';
+    display: inline-block;
+    margin-left: 8px;
+    width: 10px;
+    height: 10px;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    position: relative;
+    top: -2px;
+}
+
+/* Exact hover effect from menu-rendering.php */
+.language-selector:hover .arrow-down,
+.language-selector-mobile:hover .arrow-down {
+    transform: rotate(-135deg);
+    top: 0px;
+}
+
+/* Language dropdown container */
+.language-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 9999;
+    background-color: #fff;
+    border-radius: 10px;
+    min-width: 60px;
+    box-shadow: 0px 10px 60px 0px rgba(102, 83, 198, 0.15);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    border: 1px solid #eaeaea;
+    margin-top: 0;
+    text-align: center;
+}
+
+/* Create a padding-less pseudo-element to fill the gap between selector and dropdown */
+.language-selector::after,
+.language-selector-mobile::after,
+.hover-dropdown::after {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 10px;
+    width: 100%;
+    bottom: -10px;
+    left: 0;
+    z-index: 9998;
+}
+
+/* When dropdown is shown through JavaScript or hover */
+.language-dropdown.open,
+.hover-dropdown:hover .language-dropdown,
+.language-selector:hover .language-dropdown,
+.language-selector-mobile:hover .language-dropdown {
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Style for individual language options */
+.language-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--Grey, #8399AF);
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: background-color 0.2s ease;
+}
+
+.language-option:hover {
+    background-color: #f5f5f5;
+}
+
+/* Implement hover delay with transition */
+.language-dropdown {
+    transition-delay: 0s;
+    transition-duration: 0.1s;
+    pointer-events: auto;
+}
+
+.language-selector:hover .language-dropdown,
+.language-selector-mobile:hover .language-dropdown,
+.hover-dropdown:hover .language-dropdown {
+    transition-delay: 0.1s;
+}
+
+/* Make dropdown clickable even when technically not hovered */
+.language-dropdown:hover {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .language-dropdown {
+        position: static;
+        margin-top: 8px;
+        box-shadow: none;
+        border: 1px solid #eaeaea;
+    }
+    
+    .language-selector-mobile {
+        display: flex !important; /* Show mobile language selector */
+    }
+    
+    .language-selector-mobile .language-dropdown {
+        margin-top: 8px;
+        width: 100%;
+    }
+    
+    /* Hide desktop language selector */
+    .language-selector {
+        display: none !important;
+    }
+}

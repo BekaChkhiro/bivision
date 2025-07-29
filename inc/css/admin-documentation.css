@@ -1,0 +1,215 @@
+/**
+ * BeVision Documentation Styles
+ * Clean and detailed styles for the admin documentation page
+ */
+
+/* Main Container */
+.bevision-documentation-wrapper {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    color: #333;
+}
+
+/* Header */
+.bevision-documentation-header {
+    background: #6653C6; /* BeVision purple */
+    color: #fff;
+    padding: 30px 40px;
+    border-bottom: 5px solid #2FCA02; /* BeVision green */
+}
+
+.bevision-documentation-header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+}
+
+.bevision-intro {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 800px;
+}
+
+/* Navigation */
+.bevision-documentation-navigation {
+    background: #f7f7f7;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 20px;
+}
+
+.bevision-documentation-navigation ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.bevision-documentation-navigation li {
+    margin: 0;
+}
+
+.bevision-documentation-navigation a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.bevision-documentation-navigation a:hover,
+.bevision-documentation-navigation a:focus {
+    background: #f0f0f0;
+    border-bottom-color: #6653C6;
+    color: #6653C6;
+}
+
+/* Content */
+.bevision-documentation-content {
+    padding: 30px 40px;
+}
+
+/* Sections */
+.documentation-section {
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.documentation-section:last-child {
+    border-bottom: none;
+}
+
+.documentation-section h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #6653C6;
+    margin: 0 0 25px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* Subsections */
+.documentation-subsection {
+    margin-bottom: 30px;
+    padding-left: 15px;
+    border-left: 3px solid #f0f0f0;
+}
+
+.documentation-subsection h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 15px 0;
+}
+
+.documentation-subsection p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 15px 0;
+}
+
+/* Lists */
+.documentation-subsection ol,
+.documentation-subsection ul {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.documentation-subsection li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.documentation-subsection ul ul,
+.documentation-subsection ol ul,
+.documentation-subsection ul ol,
+.documentation-subsection ol ol {
+    margin: 8px 0;
+}
+
+/* Notes */
+.note {
+    background: #f7fafc;
+    border-left: 4px solid #2FCA02; /* BeVision green */
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.note p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.note strong {
+    color: #2FCA02;
+}
+
+/* FAQ items */
+.faq-item {
+    margin-bottom: 25px;
+    border-bottom: 1px dashed #eaeaea;
+    padding-bottom: 20px;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-item h3 {
+    cursor: pointer;
+    position: relative;
+    padding-right: 30px;
+}
+
+/* Code blocks */
+code {
+    background: #f7f7f7;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #333;
+}
+
+pre {
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+    border: 1px solid #eaeaea;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 782px) {
+    .bevision-documentation-header {
+        padding: 20px;
+    }
+    
+    .bevision-documentation-content {
+        padding: 20px;
+    }
+    
+    .bevision-documentation-navigation ul {
+        flex-direction: column;
+    }
+    
+    .bevision-documentation-navigation a {
+        padding: 12px 15px;
+    }
+    
+    .documentation-section h2 {
+        font-size: 24px;
+    }
+    
+    .documentation-subsection h3 {
+        font-size: 18px;
+    }
+}

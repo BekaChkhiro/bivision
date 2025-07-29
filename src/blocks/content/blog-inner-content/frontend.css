@@ -1,0 +1,95 @@
+.wp-block-bevision-blog-inner-content {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    display: block; /* Show on desktop by default */
+}
+
+.wp-block-bevision-blog-inner-content .blog-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    color: #323377;
+}
+
+.wp-block-bevision-blog-inner-content .blog-description {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    color: #666;
+    font-weight: 500;
+}
+
+.wp-block-bevision-blog-inner-content .blog-content {
+    margin-bottom: 20px;
+}
+
+.wp-block-bevision-blog-inner-content .blog-paragraph {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Author section styles - simple, no box */
+.wp-block-bevision-blog-inner-content .blog-author {
+    margin-top: 30px;
+}
+
+.wp-block-bevision-blog-inner-content .author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.wp-block-bevision-blog-inner-content .author-name {
+    font-weight: 600;
+    color: #2D2A5F;
+    font-size: 18px;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.wp-block-bevision-blog-inner-content .author-title {
+    font-size: 14px;
+    color: #8399AF;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .wp-block-bevision-blog-inner-content {
+        display: none; /* Hide on mobile */
+    }
+    
+    /* Keeping these styles for when viewed in the admin editor on mobile */
+    .wp-block-bevision-blog-inner-content .blog-title {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    
+    .wp-block-bevision-blog-inner-content .blog-paragraph {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    .wp-block-bevision-blog-inner-content .blog-author {
+        margin-top: 20px;
+    }
+    
+    .wp-block-bevision-blog-inner-content .author-image {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .wp-block-bevision-blog-inner-content .author-name {
+        font-size: 16px;
+    }
+    
+    .wp-block-bevision-blog-inner-content .author-title {
+        font-size: 13px;
+    }
+}

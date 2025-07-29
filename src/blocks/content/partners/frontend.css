@@ -1,0 +1,187 @@
+/* Partners Block Frontend Styles */
+
+/* Partners Title Container Font */
+.partners-title-container {
+    font-family: 'roman' !important;
+    font-weight: 400!important;
+}
+
+.partners-section.carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+.partners-section {
+    max-width: 1250px;
+    margin: 0 auto;
+  
+    padding: 0px;
+}
+
+.partners-block {
+    padding-top: 60px!important;
+  
+    max-width: 1250px;
+    margin: 0 auto;
+ 
+    padding: 0px;
+}
+
+
+.partners-section.carousel .carousel-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    transition: transform 0.5s ease;
+    gap: 20px;
+}
+
+.partners-section.carousel .partner-logo-container {
+    flex-shrink: 0;
+    width: 160px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+.partners-section.carousel .partner-logo {
+    max-height: 60px;
+    max-width: 140px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.partners-section.carousel .partner-logo:hover {
+    filter: grayscale(0%);
+}
+
+.partners-section.carousel .carousel-dots {
+    display: none !important;
+}
+
+.partners-section.carousel .carousel-dot {
+    display: none !important;
+}
+
+.partners-section.carousel .carousel-dot.active {
+    display: none !important;
+}
+
+/* Static Grid Layout for non-carousel mode */
+.partners-section.grid {
+    padding: 20px 0;
+}
+
+.partners-section.grid .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+}
+
+.partners-section.grid .partner-logo-container {
+    width: 160px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.partners-section.grid .partner-logo {
+    max-height: 60px;
+    max-width: 140px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.partners-section.grid .partner-logo:hover {
+    filter: grayscale(0%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .partners-section {
+        padding: 40px 20px !important;
+        margin-top: 0 !important;
+    }
+    
+    .partners-block {
+        padding: 40px 20px !important;
+    }
+    
+    .partners-section.carousel {
+        padding: 0 !important; /* No padding for carousel */
+        width: auto !important; /* Override inline width to ensure proper sizing */
+        max-width: 100% !important;
+    }
+    
+    .partners-section.carousel .partner-logo-container {
+        width: 110px !important; /* Width to fit exactly 3 logos */
+        height: 50px; /* Smaller height */
+        margin: 0 5px !important; /* Consistent with JS margins */
+        padding: 5px; /* Minimal padding */
+    }
+    
+    .partners-section.carousel .partner-logo {
+        max-height: 40px; /* Adjusted logo height */
+        max-width: 100px; /* Adjusted logo width */
+    }
+    
+    .partners-section.grid .partners-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 15px;
+    }
+    
+    .partners-section.grid .partner-logo-container {
+        width: 140px;
+        height: 70px;
+    }
+    
+    .partners-section.grid .partner-logo {
+        max-height: 50px;
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .partners-section.carousel .partner-logo-container {
+        width: 110px !important; /* Consistent width for 3 logos */
+        height: 50px;
+    }
+    
+    .partners-section.carousel .partner-logo {
+        max-height: 35px;
+        max-width: 95px;
+    }
+    
+    .partners-section.grid .partners-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    
+    .partners-section.grid .partner-logo-container {
+        width: 120px;
+        height: 60px;
+    }
+    
+    .partners-section.grid .partner-logo {
+        max-height: 40px;
+        max-width: 100px;
+    }
+}

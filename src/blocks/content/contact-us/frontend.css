@@ -1,0 +1,124 @@
+/* Contact Us Block Frontend Styles */
+.wp-block-bevision-contact-us {
+    background-color: #221A4C;
+    position: relative;
+    overflow: hidden;
+    max-width: 1250px;
+    margin: 60px auto 0px;
+    border-radius: 20px;
+    margin-bottom:120px;
+}
+
+/* Contact Us Block with background images */
+/* Desktop background is set inline via JS */
+
+.wp-block-bevision-contact-us .contact-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 60px;
+    z-index: 2;
+}
+
+.wp-block-bevision-contact-us .contact-us-heading {
+    color: #2FCA02;
+    font-size: 16px;
+    font-family: 'bold';
+    font-weight: 700;
+    margin: 0px 0px 5px;
+    text-transform: uppercase;
+}
+
+.wp-block-bevision-contact-us .contact-us-title {
+    color: #FFFFFF;
+    font-size: 34px;
+    font-family: 'medium';
+    font-weight: 750;
+    margin: 0px;
+    line-height: 1.2;
+}
+
+.wp-block-bevision-contact-us .contact-button {
+    background-color: #2FCA02 !important;
+    color: #fff !important;
+    padding: 0px 40px !important;
+    font-size: 16px !important;
+    font-family: 'bold';
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: normal !important;
+    border: none !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 50px !important;
+    text-decoration: none !important;
+    width: auto !important;
+    min-width: auto !important;
+}
+
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .wp-block-bevision-contact-us {
+        margin: 60px 20px;
+    }
+    
+    /* Mobile background styles will be handled in JS */
+    
+    .wp-block-bevision-contact-us .contact-container {
+        flex-direction: column;
+        padding: 40px;
+        text-align: center;
+        gap: 40px;
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        z-index: 2;
+        background-image: url('../../../../assets/images/contact-us-bg-mobile.png');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .wp-block-bevision-contact-us .text-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .wp-block-bevision-contact-us .contact-us-heading {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .wp-block-bevision-contact-us .contact-us-title {
+        font-size: 28px;
+        text-align: center;
+    }
+    
+    .wp-block-bevision-contact-us .contact-button {
+        display: flex !important;
+        width: calc(100% - 80px) !important;
+        margin-left: 40px !important;
+        margin-right: 40px !important;
+        text-align: center;
+        padding: 0px 40px !important;
+        height: 50px !important;
+    }
+    
+    .wp-block-bevision-contact-us .background-dots {
+        width: 40%;
+        right: -10px;
+    }
+    
+    .wp-block-bevision-contact-us .background-circle {
+        width: 200px;
+        height: 200px;
+        top: 80%;
+    }
+}

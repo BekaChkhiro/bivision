@@ -1,0 +1,159 @@
+/* Apply fonts to hero section elements with higher specificity */
+/* Subtitle - Medium weight */
+.hero-section .subtitle,
+.hero-section span.subtitle,
+.hero-section [style*="font-family"] .subtitle {
+    font-family: 'medium' !important;
+}
+
+/* Second Title - Medium weight */
+.hero-section .second-title,
+.hero-section span.second-title,
+.hero-section [style*="font-family"] .second-title {
+    font-family: 'medium' !important;
+}
+
+/* Title/H1 - Keep existing behavior (can be customized separately) */
+.hero-section .title,
+.hero-section h1,
+.hero-section [style*="font-family"] .title {
+    font-family: 'bold' !important;
+}
+
+/* Description - Roman weight */
+.hero-section .description,
+.hero-section p,
+.hero-section [style*="font-family"] .description,
+.hero-section [style*="font-family"] p {
+    font-family: 'roman' !important;
+}
+
+/* Buttons - Bold weight */
+.hero-section .demo-button,
+.hero-section .button,
+.hero-section button,
+.hero-section [style*="font-family"] .demo-button,
+.hero-section [style*="font-family"] .button,
+.hero-section [style*="font-family"] button {
+    font-family: 'bold' !important;
+}
+
+
+/* Mobile Styles - Only keeping mobile-specific overrides that aren't handled by styles.js */
+@media (max-width: 768px) {
+    /* Force max-width: 100% on all elements in hero section and center everything */
+    .hero-section *,
+    .hero-section *[style*="max-width"],
+    .hero-section div[style*="max-width"],
+    .hero-section .hero-text[style*="max-width"] {
+        max-width: 100% !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Container styles for mobile */
+    .hero-section {
+        padding: 40px 20px !important;
+        background-color: white !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    /* Force column layout for mobile */
+    .hero-section .hero-content {
+        flex-direction: column !important;
+        background: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    /* Mobile-specific box shadow and background for hero text */
+    .hero-section .hero-text {
+        background: white !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin-bottom: 40px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Second title mobile specific styles */
+    .hero-section .second-title {
+        font-size: 30px !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Data visualization images container */
+    .hero-bg-image {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: 250px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        border-radius: 0 !important;
+        opacity: 1 !important;
+        background-size: contain !important;
+        background-position: center top !important;
+    }
+    
+    /* Mobile hero content container */
+    .hero-content {
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* Button styling for mobile */
+    .hero-section button,
+    .hero-section .demo-button {
+        width: 80% !important;
+        border-radius: 10px !important;
+        padding: 12px 20px !important;
+        height: 50px !important;
+    }
+    
+    /* Subtitle styling for mobile */
+    .hero-section .subtitle {
+        font-size: 22px !important;
+        color: #2FCA02 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    /* Title styling for mobile */
+    .hero-section .title,
+    .hero-section h1 {
+        font-size: 36px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 20px !important;
+        color: #221A4C !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    /* Description styling for mobile */
+    .hero-section .description,
+    .hero-section p {
+        font-size: 16px !important;
+        line-height: normal !important;
+        margin-bottom: 40px !important;
+        color: #8399AF !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+        
+    }
+}

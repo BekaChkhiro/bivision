@@ -1,0 +1,259 @@
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { useBlockProps, Fragment } from '@wordpress/block-editor';
+
+// Import components
+import BackgroundImage from './components/BackgroundImage';
+import MediaColumn from './components/MediaColumn';
+import ContentArea from './components/ContentArea';
+import Inspector from './components/Inspector';
+import Title from './components/Title';
+import { blockStyle } from './components/styles';
+
+/**
+ * Register the Why BIVISION block
+ */
+registerBlockType('bevision/why-bivision', {
+    title: __('Why BIVISION', 'bevision'),
+    description: __('Why BIVISION section with image and statistics', 'bevision'),
+    category: 'bevision',
+    icon: {
+        background: '#2a215f',
+        foreground: '#fff',
+        src: 'groups',
+    },
+    keywords: [
+        __('about', 'bevision'),
+        __('statistics', 'bevision'),
+        __('info', 'bevision')
+    ],
+    attributes: {
+        mainTitle: {
+            type: 'string',
+            default: __('WHY BIVISION', 'bevision')
+        },
+        aboutContent: {
+            type: 'string',
+            default: __('Lorem ipsum dolor sit amet', 'bevision')
+        },
+        mediaId: {
+            type: 'number',
+        },
+        mediaUrl: {
+            type: 'string',
+        },
+        yearsOnMarket: {
+            type: 'string',
+            default: '7'
+        },
+        yearsLabel: {
+            type: 'string',
+            default: __('Years on Market', 'bevision')
+        },
+        clientsCount: {
+            type: 'string',
+            default: '150'
+        },
+        clientsLabel: {
+            type: 'string',
+            default: __('Clients', 'bevision')
+        },
+        npsScore: {
+            type: 'string',
+            default: '95%'
+        },
+        npsLabel: {
+            type: 'string',
+            default: __('NPS Score', 'bevision')
+        },
+        dashboardsCount: {
+            type: 'string',
+            default: '60+'
+        },
+        dashboardsLabel: {
+            type: 'string',
+            default: __('Custom Dashboards', 'bevision')
+        },
+        backgroundMediaId: {
+            type: 'number',
+        },
+        backgroundMediaUrl: {
+            type: 'string',
+        },
+        backgroundSize: {
+            type: 'number',
+            default: 100,
+        },
+        backgroundMediaId2: {
+            type: 'number',
+        },
+        backgroundMediaUrl2: {
+            type: 'string',
+        },
+        backgroundSize2: {
+            type: 'number',
+            default: 100,
+        },
+        backgroundOpacity2: {
+            type: 'number',
+            default: 20,
+        },
+        yearsIconId: {
+            type: 'number',
+        },
+        yearsIconUrl: {
+            type: 'string',
+        },
+        clientsIconId: {
+            type: 'number',
+        },
+        clientsIconUrl: {
+            type: 'string',
+        },
+        npsIconId: {
+            type: 'number',
+        },
+        npsIconUrl: {
+            type: 'string',
+        },
+        dashboardsIconId: {
+            type: 'number',
+        },
+        dashboardsIconUrl: {
+            type: 'string',
+        }
+    },
+    edit: ({ attributes, setAttributes }) => {
+        // Custom styles for mobile detection
+        const isMobile = window.innerWidth <= 768;
+        
+        // Set block props with dynamic styles
+        const blockProps = useBlockProps({
+            style: {
+                '--background-size': `${attributes.backgroundSize}%`,
+                '--background-size2': `${attributes.backgroundSize2}%`,
+                '--background-opacity2': attributes.backgroundOpacity2 / 100
+            }
+        });
+
+        return (
+            <Fragment>
+                {/* Inspector Controls */}
+                <Inspector 
+                    attributes={attributes} 
+                    setAttributes={setAttributes} 
+                />
+                
+                {/* Block Styles */}
+                <style>{blockStyle}</style>
+                
+                {/* Block Content */}
+                <div {...blockProps}>
+                    <div className="why-bivision">
+                        {/* Background Images */}
+                        <BackgroundImage 
+                            imageUrl={attributes.backgroundMediaUrl} 
+                            className="background" 
+                            altText="Background Image" 
+                        />
+                        
+                        <BackgroundImage 
+                            imageUrl={attributes.backgroundMediaUrl2} 
+                            className="background2" 
+                            altText="Bottom Right Background" 
+                        />
+                        
+                        {/* Title */}
+                        <Title 
+                            title={attributes.mainTitle}
+                            onChange={(mainTitle) => setAttributes({ mainTitle })}
+                            isEdit={true}
+                            isMobile={isMobile}
+                        />
+                        
+                        {/* Main Content Container */}
+                        <div className="container">
+                            {/* Left Column - Media */}
+                            <MediaColumn 
+                                attributes={attributes} 
+                                setAttributes={setAttributes} 
+                                isEdit={true} 
+                            />
+                            
+                            {/* Right Column - Content */}
+                            <ContentArea 
+                                attributes={attributes} 
+                                setAttributes={setAttributes} 
+                                isEdit={true} 
+                            />
+                        </div>
+                    </div>
+                </div>
+            </Fragment>
+        );
+    },
+    save: ({ attributes }) => {
+        // Mobile styles for frontend
+        const mobileCssText = `
+            @media (max-width: 768px) {
+                .why-bivision__main-title {
+                    font-size: 40px !important;
+                    color: green !important;
+                    border: 5px solid green !important;
+                }
+            }
+        `;
+        
+        // Set block props with dynamic styles for frontend
+        const blockProps = useBlockProps.save({
+            style: {
+                '--background-size': `${attributes.backgroundSize}%`,
+                '--background-size2': `${attributes.backgroundSize2}%`,
+                '--background-opacity2': attributes.backgroundOpacity2 / 100
+            }
+        });
+        
+        return (
+            <Fragment>
+                <style>{blockStyle}</style>
+                <div {...blockProps}>
+                    <div className="why-bivision">
+                        {/* Background Images */}
+                        <BackgroundImage 
+                            imageUrl={attributes.backgroundMediaUrl} 
+                            className="background" 
+                            altText="Background Image" 
+                        />
+                        
+                        <BackgroundImage 
+                            imageUrl={attributes.backgroundMediaUrl2} 
+                            className="background2" 
+                            altText="Bottom Right Background" 
+                        />
+                        
+                        {/* Title */}
+                        <Title 
+                            title={attributes.mainTitle}
+                            isEdit={false}
+                        />
+                        
+                        {/* Main Content Container */}
+                        <div className="container">
+                            {/* Left Column - Media */}
+                            <MediaColumn 
+                                attributes={attributes} 
+                                isEdit={false} 
+                            />
+                            
+                            {/* Right Column - Content */}
+                            <ContentArea 
+                                attributes={attributes}
+                                isEdit={false} 
+                            />
+                        </div>
+                    </div>
+                </div>
+            </Fragment>
+        );
+    },
+});

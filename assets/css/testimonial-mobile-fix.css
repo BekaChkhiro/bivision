@@ -1,0 +1,23 @@
+/* Mobile testimonial card fix - 100% width and no margin */
+@media screen and (max-width: 767px) {
+    .wp-block-bevision-client-testimonials .testimonial-card {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        margin: 0 !important;
+        padding: 30px !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Force carousel container to show only one card */
+    .wp-block-bevision-client-testimonials .carousel-inner {
+        scroll-snap-type: x mandatory !important;
+        scroll-behavior: smooth !important;
+    }
+    
+    /* Hide dots beyond 5 */
+    .mobile-carousel-dots button:nth-child(n+6) {
+        display: none !important;
+    }
+}

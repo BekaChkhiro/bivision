@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build files
+*.zip
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# WordPress theme specific
+.sass-cache/
+*.css.map
+*.js.map

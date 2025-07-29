@@ -1,0 +1,151 @@
+/* Text with Image Block - Frontend Styles */
+.text-with-image-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1250px;
+  margin: 0 auto 60px auto;
+  padding: 60px 0px;
+  box-sizing: border-box;
+  width: 100%;
+  gap: 60px;
+}
+
+.text-with-image-block .text-column {
+  flex: 0.55;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.text-with-image-block .title {
+  font-size: 24px;  
+  font-weight: 700;
+  color: #2D2A5F;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.text-with-image-block .content {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #4E4B66;
+  margin: 0;
+}
+
+.text-with-image-block .image-column {
+  flex: 0.45;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-with-image-block .image-container {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.text-with-image-block .image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Author section styles - simple, no box */
+.text-with-image-block .text-author {
+  margin-top: 30px;
+}
+
+.text-with-image-block .author-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-with-image-block .author-name {
+  font-weight: 600;
+  color: #2D2A5F;
+  font-size: 18px;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.text-with-image-block .author-title {
+  font-size: 14px;
+  color: #8399AF;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Layout variants */
+.text-with-image-block.text-first {
+  gap: 64px;
+}
+
+.text-with-image-block.image-first {
+  gap: 64px;
+}
+
+.text-with-image-block.image-first .image-column {
+  order: 1;
+}
+
+.text-with-image-block.image-first .text-column {
+  order: 2;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .text-with-image-block {
+    flex-direction: column;
+    gap: 43px;
+    padding: 40px 20px;
+    margin-bottom: 0;
+  }
+  
+   .text-with-image-block .image-column {
+    order: 1;
+  }
+
+  .text-with-image-block .text-column {
+    order: 2;
+  }
+
+  .text-with-image-block .text-column,
+  .text-with-image-block .image-column {
+    flex: 1;
+  }
+  
+  .text-with-image-block .title {
+    font-size: 28px;
+  }
+  
+  .text-with-image-block .content {
+    font-size: 16px;
+  }
+  
+  .text-with-image-block .text-author {
+    margin-top: 20px;
+  }
+  
+  .text-with-image-block .author-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .text-with-image-block .author-name {
+    font-size: 16px;
+  }
+  
+  .text-with-image-block .author-title {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,386 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles can go here */
+
+/* Remove default padding from pages and containers */
+body, main, .wp-site-blocks, .entry-content, .wp-block-group {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Ensure no horizontal padding on main page containers */
+.wp-block-group, .wp-block-columns, .wp-block-column {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+
+
+/* Scroll behavior for anchor navigation - handles header overlap */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Default header offset */
+}
+
+/* Alternative approach for sections with IDs */
+section[id], div[id], h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+    scroll-margin-top: 100px; /* Default header offset */
+}
+
+/* For WordPress blocks or elements that might be scroll targets */
+.wp-block[id], .wp-block-group[id] {
+    scroll-margin-top: 100px;
+}
+
+/* Mobile responsive scroll offsets */
+@media (max-width: 768px) {
+    .carousel-dots-container {
+        display: none !important;
+    }
+
+    html {
+        scroll-padding-top: 80px; /* Smaller offset for mobile */
+    }
+    
+    section[id], div[id], h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+        scroll-margin-top: 80px;
+    }
+    
+    .wp-block[id], .wp-block-group[id] {
+        scroll-margin-top: 80px;
+    }
+}
+
+/* Large screens might need more offset */
+@media (min-width: 1200px) {
+    html {
+        scroll-padding-top: 120px;
+    }
+    
+    section[id], div[id], h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+        scroll-margin-top: 120px;
+    }
+    
+    .wp-block[id], .wp-block-group[id] {
+        scroll-margin-top: 120px;
+    }
+}
+
+/* Ensure smooth scrolling for all browsers */
+* {
+    scroll-behavior: smooth;
+}
+
+/* Posts Tab Styles */
+.blog-posts-filter {
+    padding: 60px 0;
+    background: #ffffff;
+    @apply py-10;
+}
+
+.posts-tabs-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 50px;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    @apply flex justify-center flex-wrap gap-4 mb-10;
+}
+
+.post-tab-item {
+    padding: 14px 28px;
+    background: #F5F5F5;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #221A4C;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    @apply px-6 py-3 bg-gray-100 rounded-lg text-base font-medium text-gray-700 cursor-pointer transition-all;
+}
+
+.post-tab-item:hover {
+    background: #EAEAEA;
+    transform: translateY(-1px);
+}
+
+.post-tab-item.active {
+    background: #6653C6;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(102, 83, 198, 0.2);
+    @apply bg-[#6653C6] text-white;
+}
+
+.posts-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-10;
+}
+
+.post-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    @apply bg-white rounded-xl overflow-hidden shadow-lg transition-all hover:shadow-xl;
+}
+
+.post-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.post-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.post-image-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: #f5f5f5;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    @apply relative aspect-[16/9];
+}
+
+.post-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    @apply w-full h-full object-cover;
+}
+
+.post-card:hover .post-image {
+    transform: scale(1.05);
+}
+
+/* Loading animation for images */
+.post-image.loading {
+    animation: shimmer 1s infinite linear;
+    background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+    from {
+        background-position: -200% 0;
+    }
+    to {
+        background-position: 200% 0;
+    }
+}
+
+.post-content {
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    @apply p-5;
+}
+
+.post-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+    @apply mb-2;
+}
+
+.post-category {
+    color: #2FCA02;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    transition: color 0.3s ease;
+    @apply text-sm font-semibold mr-2;
+}
+
+.post-category:not(:last-child):after {
+    content: "•";
+    margin-left: 8px;
+    opacity: 0.5;
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    color: #221A4C;
+    line-height: 1.4;
+    @apply text-lg font-bold text-gray-800 leading-tight mt-0 mb-4;
+}
+
+.load-more-container {
+    text-align: center;
+    margin-top: 40px;
+    @apply text-center mt-8;
+}
+
+.load-more-button {
+    padding: 16px 36px;
+    background: #6653C6;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(102, 83, 198, 0.2);
+    @apply px-8 py-3 bg-[#6653C6] text-white rounded-lg text-base font-medium cursor-pointer transition-all hover:bg-[#5443b6];
+}
+
+.load-more-button:hover {
+    background: #5445a5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(102, 83, 198, 0.3);
+}
+
+.load-more-button:active {
+    transform: translateY(0);
+}
+
+.loading-indicator {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+    @apply text-center py-8 text-gray-600;
+}
+
+.no-posts, .error-message {
+    text-align: center;
+    padding: 50px 20px;
+    color: #666;
+    background: #f9f9f9;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.no-posts {
+    @apply text-center py-8 text-gray-600;
+}
+
+.error-message {
+    color: #dc3545;
+    background: #fdf2f3;
+    @apply text-center py-8 text-red-600;
+}
+
+@media (max-width: 768px) {
+    .blog-posts-filter {
+        padding: 40px 0;
+    }
+
+    .posts-tabs-container {
+        margin-bottom: 30px;
+    }
+
+    .posts-grid-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .post-tab-item {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .post-image {
+        height: 200px;
+    }
+
+    .post-content {
+        padding: 20px;
+    }
+
+    .post-title {
+        font-size: 18px;
+    }
+
+    .load-more-button {
+        padding: 14px 30px;
+        font-size: 15px;
+    }
+}
+
+/* Fix WordPress admin bar to stay at top on mobile even when burger menu is open */
+#wpadminbar {
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 99999 !important;
+}
+
+/* Ensure admin bar stays above mobile menu */
+@media screen and (max-width: 782px) {
+    #wpadminbar {
+        position: fixed !important;
+        top: 0 !important;
+        z-index: 99999 !important;
+    }
+}
+
+/* Footer address margin fix */
+.footer-address > *:first-child {
+    margin-top: 5px;
+}
+
+/* Products container responsive styles */
+.products-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Products image styles */
+.products-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+/* Mobile: Set container width to 90% */
+@media (max-width: 768px) {
+    .products-container {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+    }
+}

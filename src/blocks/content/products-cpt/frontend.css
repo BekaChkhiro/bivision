@@ -1,0 +1,312 @@
+/* Products CPT Block Frontend Styles */
+
+/* Base styles for products section - now using Section component */
+.products-section {
+    position: relative;
+    overflow: hidden;
+    color: #333;
+}
+
+.products-section .products-section-title {
+    color: #6653C6;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 750;
+    line-height: normal;
+    margin: 0 0 5px;
+}
+
+.products-section .products-section-subtitle {
+    color: #221A4C;
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 750;
+    line-height: normal;
+    margin: 0 0 30px;
+}
+
+/* Tab Navigation */
+.products-tabs-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.products-tab-item {
+    color: #221A4C;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: normal;
+    background: #fff;
+}
+
+.products-tab-item:hover,
+.products-tab-item.active {
+    color: #6653C6;
+    background: #ecf0f8;
+}
+
+/* Tab Content */
+.products-grid {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    gap: 48px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.products-content-left {
+    padding: 0;
+}
+
+.products-subtitle {
+    color: #7B61FF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 750;
+    line-height: normal;
+    margin: 0 0 5px;
+}
+
+.products-title {
+    color: #333;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 750;
+    line-height: normal;
+    margin: 0 0 40px;
+}
+
+/* Buttons */
+.products-button-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.products-button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.products-button-primary {
+    background-color: #6653C6;
+    color: #fff;
+    padding: 15px 40px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.products-button-primary:hover {
+    background-color: #6B4FFF;
+}
+
+.products-button-secondary {
+    background-color: #2FCA02;
+    color: #fff;
+    padding: 15px 40px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.products-button-secondary:hover {
+    background-color: #3CC954;
+}
+
+/* Product Features */
+.products-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.products-feature-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Target all possible feature icons to ensure 18px size */
+.products-feature-icon,
+.products-section .products-feature-icon,
+.product-container .products-feature-icon,
+.products-feature-item .products-feature-icon,
+.products-feature-list li span,
+.products-tab-content li span:first-child,
+.products-feature-list span:first-child,
+.products-feature-item span:first-child,
+.products-feature-list li:before,
+.products-feature-item:before,
+.products-feature-item svg,
+.products-feature-item i,
+.products-tab-content svg,
+span[style*="checkmark"],
+.products-feature-list span[style*="absolute"] {
+    color: #6653C6 !important;
+    margin-right: 10px !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    line-height: normal !important;
+}
+
+/* Override inline styles as a backup, only for feature items */
+.products-feature-list [style*="font-size"],
+.products-tab-content li [style*="font-size"],
+.products-feature-item [style*="font-size"] {
+    font-size: 18px !important;
+}
+
+.products-feature-text,
+.products-section .products-feature-text,
+.product-container .products-feature-text,
+.products-feature-item .products-feature-text {
+    margin: 0;
+    color: #333;
+    font-size: 18px !important;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1024px) {
+    .products-tabs-nav {
+        margin-bottom: 40px;
+    }
+    
+    .products-grid {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    
+    .products-section-subtitle {
+        margin-bottom: 30px;
+        font-size: 20px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .products-tabs-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+    }
+    
+    .products-tab-item {
+        flex: 0 0 auto;
+        min-width: 130px;
+        font-size: 16px;
+        padding: 10px 15px;
+        text-align: center;
+        scroll-snap-align: start;
+        white-space: nowrap;
+        
+    }
+    
+    .products-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    
+    .products-title {
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+    
+    .products-subtitle {
+        font-size: 16px;
+    }
+    
+    .products-button-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    
+    .products-button {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    
+    .products-button-primary,
+    .products-button-secondary {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    
+    .products-feature-text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    .products-section-title {
+        font-size: 14px;
+    }
+    
+    .products-section-subtitle {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+    
+    .products-tab-item {
+        min-width: 110px;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}

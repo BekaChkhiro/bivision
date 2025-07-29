@@ -1,0 +1,55 @@
+{
+	"version": 2,
+	"settings": {
+		"layout": {
+			"contentSize": "840px",
+			"wideSize": "1100px"
+		},
+		"color": {
+			"palette": [
+				{
+					"slug": "primary",
+					"color": "#0073a8",
+					"name": "Primary"
+				},
+				{
+					"slug": "secondary",
+					"color": "#6c757d",
+					"name": "Secondary"
+				}
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"name": "System Default",
+					"slug": "system"
+				},
+				{
+					"slug": "helvetica-neue-lt-ge",
+					"fontFace": [
+						{
+							"fontStretch": "",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": "http://localhost:10003/wp-content/uploads/useanyfont/404Helvetica-Neue-LT-GE.woff2"
+						}
+					],
+					"isUAF": true
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "normal",
+					"size": "16px",
+					"name": "Normal"
+				},
+				{
+					"slug": "large",
+					"size": "24px",
+					"name": "Large"
+				}
+			]
+		}
+	}
+}

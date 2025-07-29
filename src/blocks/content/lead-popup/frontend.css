@@ -1,0 +1,149 @@
+/* Frontend styles for lead-popup */
+.bevision-lead-popup-container {
+    position: relative;
+}
+
+.bevision-lead-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.popup-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.popup-subtitle {
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #666;
+}
+
+.popup-form .form-group {
+    margin-bottom: 20px;
+}
+
+.popup-form input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.popup-form input::placeholder {
+    color: #aaa;
+}
+
+.popup-form .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.popup-form .submit-button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #6c5ce7;
+    color: white;
+}
+
+.popup-form .cancel-button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    color: #666;
+}
+
+.popup-form .submit-button:hover {
+    opacity: 0.9;
+}
+
+.popup-form .cancel-button:hover {
+    background-color: #f5f5f5;
+}
+
+.success-message {
+    padding: 15px;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 4px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .bevision-lead-popup {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    .popup-title {
+        font-size: 20px;
+    }
+    
+    .popup-subtitle {
+        font-size: 14px;
+    }
+}

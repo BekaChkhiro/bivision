@@ -1,0 +1,262 @@
+.wp-block-bevision-media-description-block {
+    display: flex;
+    gap: 40px;
+    align-items: stretch;
+    padding: 60px;
+    max-width: 1320px;
+    margin: 0   auto 60px auto;
+    background-color: rgba(47, 202, 2, 0.05);
+    border-radius: 12px;
+}
+
+.wp-block-bevision-media-description-block .media-column {
+    flex: 0 0 auto;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 40%;
+}
+
+.wp-block-bevision-media-description-block .media-wrapper {
+    position: relative;
+    width: 100%;
+    height: 309.27px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.wp-block-bevision-media-description-block .media-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.wp-block-bevision-media-description-block .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.wp-block-bevision-media-description-block .play-button {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #4CD137;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.wp-block-bevision-media-description-block .custom-play-button {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.wp-block-bevision-media-description-block .play-button:hover,
+.wp-block-bevision-media-description-block .custom-play-button:hover {
+    transform: scale(1.05);
+}
+
+.wp-block-bevision-media-description-block .play-icon {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 24px 0 24px 40px;
+    border-color: transparent transparent transparent #ffffff;
+    margin-left: 8px;
+}
+
+.wp-block-bevision-media-description-block .content-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-left: 20px;
+    width: 60%;
+}
+
+.wp-block-bevision-media-description-block .title {
+    font-size: 24px !important;
+    font-weight: 700;
+    color: #4CD137;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.wp-block-bevision-media-description-block .description-text {
+    color: #8399AF;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 16px;
+}
+
+/* Author section styles */
+.wp-block-bevision-media-description-block .text-author {
+    margin-top: 30px;
+}
+
+.wp-block-bevision-media-description-block .author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.wp-block-bevision-media-description-block .author-name {
+    font-weight: 600;
+    color: #2D2A5F;
+    font-size: 18px;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.wp-block-bevision-media-description-block .author-title {
+    font-size: 14px;
+    color: #8399AF;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+/* Column order variants */
+.wp-block-bevision-media-description-block.content-first {
+    flex-direction: row;
+}
+
+.wp-block-bevision-media-description-block.media-first {
+    flex-direction: row;
+}
+
+.wp-block-bevision-media-description-block.content-first .content-column {
+    order: 1;
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.wp-block-bevision-media-description-block.content-first .media-column {
+    order: 2;
+}
+
+.wp-block-bevision-media-description-block.media-first .media-column {
+    order: 1;
+}
+
+.wp-block-bevision-media-description-block.media-first .content-column {
+    order: 2;
+    padding-left: 20px;
+    padding-right: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .wp-block-bevision-media-description-block {
+        flex-direction: column;
+        gap: 43px;
+        padding: 20px 20px 60px 20px;
+        margin-bottom: 0;
+    }
+    
+    /* Override flex-direction for media-first on mobile */
+    .wp-block-bevision-media-description-block.media-first {
+        flex-direction: column !important; /* Remove row direction on mobile */
+    }
+    
+    /* Override flex-direction for content-first on mobile */
+    .wp-block-bevision-media-description-block.content-first {
+        flex-direction: column !important; /* Force column direction on mobile */
+    }
+    
+    /* Reset order for mobile - always show content first on mobile for better UX */
+    .wp-block-bevision-media-description-block.content-first .content-column,
+    .wp-block-bevision-media-description-block.media-first .content-column {
+        order: 1;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .wp-block-bevision-media-description-block.content-first .media-column,
+    .wp-block-bevision-media-description-block.media-first .media-column {
+        order: 2;
+    }
+    
+    .wp-block-bevision-media-description-block .media-column {
+        max-width: 100%;
+    }
+    
+   .media-column {
+    width: 100% !important
+   }
+
+
+    .wp-block-bevision-media-description-block .media-wrapper {
+        width: 100%;
+        height: 0;
+        padding-bottom: 75%;
+    }
+
+   
+    
+    .wp-block-bevision-media-description-block .play-button {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .wp-block-bevision-media-description-block .custom-play-button {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .wp-block-bevision-media-description-block .play-icon {
+        border-width: 18px 0 18px 30px;
+    }
+    
+    .wp-block-bevision-media-description-block .title {
+        font-size: 28px !important;
+        margin-bottom: 19px !important;
+    }
+    
+    .wp-block-bevision-media-description-block .description-text {
+        font-size: 14px;
+    }
+
+    .wp-block-bevision-media-description-block .text-author {
+        margin-top: 20px;
+    }
+    
+    .wp-block-bevision-media-description-block .author-image {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .wp-block-bevision-media-description-block .author-name {
+        font-size: 16px;
+    }
+    
+    .wp-block-bevision-media-description-block .author-title {
+        font-size: 13px;
+    }
+
+    .content-column {
+        width:  90% !important;
+     
+    }
+}
