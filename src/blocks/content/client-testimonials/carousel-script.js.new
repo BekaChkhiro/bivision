@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     card.style.flex = '0 0 calc(33.333% - 20px)';
                     card.style.minWidth = 'calc(33.333% - 20px)';
                     card.style.maxWidth = 'calc(33.333% - 20px)';
-                    card.style.scrollSnapAlign = 'start';
+                    card.style.scrollSnapAlign = 'center';
                     card.style.marginRight = '30px';
                 });
                 
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     card.style.flex = '0 0 calc(33.333% - 20px)';
                     card.style.minWidth = 'calc(33.333% - 20px)';
                     card.style.maxWidth = 'calc(33.333% - 20px)';
-                    card.style.scrollSnapAlign = 'start';
+                    card.style.scrollSnapAlign = 'center';
                     card.style.marginRight = '30px';
                 });
                 

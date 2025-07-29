@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function forceApplyMobileStyles() {
         if (window.innerWidth <= 767) {
             document.querySelectorAll('.wp-block-bevision-client-testimonials .testimonial-card').forEach(card => {
-                card.style.cssText = 'width: 100% !important; min-width: 100% !important; max-width: 100% !important; flex: 0 0 100% !important; margin: 0 !important; padding: 30px !important;';
+                card.style.cssText = 'width: 100% !important; min-width: 100% !important; max-width: 100% !important; flex: 0 0 100% !important; margin: 0 !important; padding: 30px !important; scroll-snap-align: center !important;';
             });
             
             // Add padding to carousel-inner for mobile view
@@ -202,6 +202,28 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const cards = carousel.querySelectorAll('.testimonial-card');
             if (!cards.length) return;
+            
+            // Apply scroll-snap-align: center to all cards via inline style
+            cards.forEach(card => {
+                card.style.scrollSnapAlign = 'center';
+            });
+            
+            // Function to update the active card visually
+            const updateActiveCard = (index) => {
+                if (index >= 0 && index < cards.length) {
+                    // Remove active style from all cards
+                    cards.forEach(card => {
+                        card.style.boxShadow = '0px 10px 50px 0px rgba(102, 83, 198, 0.15)';
+                        card.style.transform = '';
+                        card.style.scrollSnapAlign = 'center';
+                    });
+                    
+                    // Add active style to the current card
+                    cards[index].style.boxShadow = '0px 8px 30px 0px rgba(0, 0, 0, 0.15)';
+                    cards[index].style.transform = 'translateY(-2px)';
+                    cards[index].style.scrollSnapAlign = 'center';
+                }
+            };
             
             // Clear any existing dots to prevent duplicates
             dotsContainer.innerHTML = '';
@@ -470,21 +492,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Update position using scroll
                 carousel.scrollLeft = scrollLeft + walk;
             });
-            
-            // Function to update the active card visually
-            const updateActiveCard = (index) => {
-                if (index >= 0 && index < cards.length) {
-                    // Remove active style from all cards
-                    cards.forEach(card => {
-                        card.style.boxShadow = '0px 10px 50px 0px rgba(102, 83, 198, 0.15)';
-                        card.style.transform = '';
-                    });
-                    
-                    // Add active style to the current card
-                    cards[index].style.boxShadow = '0px 8px 30px 0px rgba(0, 0, 0, 0.15)';
-                    cards[index].style.transform = 'translateY(-2px)';
-                }
-            };
             
             // Function to update the active dot based on scroll position
             const updateActiveDot = () => {
@@ -1169,6 +1176,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const cards = carousel.querySelectorAll('.testimonial-card');
             if (!cards.length) return;
+            
+            // Apply scroll-snap-align: center to all cards via inline style
+            cards.forEach(card => {
+                card.style.scrollSnapAlign = 'center';
+            });
             
             // Ensure proper initial positioning - reset scroll position to start at first card
             carousel.scrollLeft = 0;

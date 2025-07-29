@@ -61,7 +61,7 @@
     flex: 0 0 calc(33.333% - 14px) !important; /* Account for 20px gap */
     min-width: calc(33.333% - 14px) !important;
     max-width: calc(33.333% - 14px) !important;
-    scroll-snap-align: start !important;
+    scroll-snap-align: center !important;
     box-sizing: border-box !important;
     aspect-ratio: 1/1 !important; /* Make cards square */
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
@@ -132,9 +132,9 @@
         box-sizing: border-box !important;
     }
     
-    /* Add margin-left to first card for shadow visibility */
+    /* Remove margin-left from first card */
     .wp-block-bevision-client-testimonials .carousel-inner .testimonial-card:first-child {
-        margin-left: 20px !important;
+        margin-left: 0 !important;
     }
     
     .wp-block-bevision-client-testimonials .carousel-inner::-webkit-scrollbar {
@@ -147,6 +147,7 @@
         max-width: none !important; /* Allow cards to grow to fill space */
         flex-shrink: 0 !important;
         margin: 0 !important;
+        scroll-snap-align: center !important;
     }
     
     /* Desktop navigation styling */
@@ -409,4 +410,11 @@
         overflow-wrap: break-word !important;
         word-break: break-word !important;
     }
+}
+
+/* Universal rule to ensure ALL testimonial cards have centered scroll-snap alignment */
+.wp-block-bevision-client-testimonials .testimonial-card,
+.wp-block-bevision-client-testimonials .carousel-inner .testimonial-card,
+.wp-block-bevision-client-testimonials .carousel .testimonial-card {
+    scroll-snap-align: center !important;
 }
